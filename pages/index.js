@@ -2,7 +2,7 @@
 import Head from "next/head";
 // import Brands from "../components/Brands";
 import MoviesCollection from "../components/MoviesCollection";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 // import Hero from "../components/Hero";
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
@@ -14,6 +14,7 @@ export default function Home({
   top_ratedShows,
 }) {
   // const [session] = useSession();
+  // console.log("recom", popularMovies);
 
   return (
     <div>
@@ -55,7 +56,7 @@ export default function Home({
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
         <Slider results={popularMovies} />
         {/* <Brands /> */}

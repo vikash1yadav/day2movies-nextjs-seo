@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 // import Hero from "../../components/Hero";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
@@ -30,7 +30,7 @@ function Show({ result }) {
         <title>{result.title || result.original_name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <section className="relative z-50">
         <div className="relative min-h-[calc(100vh-72px)]">
           <Image
