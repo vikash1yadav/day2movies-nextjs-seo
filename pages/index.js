@@ -1,6 +1,6 @@
-import { getSession, useSession } from "next-auth/client";
+// import { getSession, useSession } from "next-auth/client";
 import Head from "next/head";
-import Brands from "../components/Brands";
+// import Brands from "../components/Brands";
 import MoviesCollection from "../components/MoviesCollection";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
@@ -13,7 +13,7 @@ export default function Home({
   top_ratedMovies,
   top_ratedShows,
 }) {
-  const [session] = useSession();
+  // const [session] = useSession();
 
   return (
     <div>
@@ -56,28 +56,21 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {session ? (
-        <Hero />
-      ) : (
-        <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
-          <Slider results={popularMovies} />
-          {/* <Brands /> */}
-          <MoviesCollection results={popularMovies} title="Popular Movies" />
-          <ShowsCollection results={popularShows} title="Popular Shows" />
+      <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
+        <Slider results={popularMovies} />
+        {/* <Brands /> */}
+        <MoviesCollection results={popularMovies} title="Popular Movies" />
+        <ShowsCollection results={popularShows} title="Popular Shows" />
 
-          <MoviesCollection
-            results={top_ratedMovies}
-            title="Top Rated Movies"
-          />
-          <ShowsCollection results={top_ratedShows} title="Top Rated Shows" />
-        </main>
-      )}
+        <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />
+        <ShowsCollection results={top_ratedShows} title="Top Rated Shows" />
+      </main>
     </div>
   );
 }
 
-export async function getStaticProps(context) {
-  const session = await getSession(context);
+export async function getStaticProps() {
+  // const session = await getSession(context);
 
   const [
     popularMoviesRes,
@@ -108,7 +101,6 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      session,
       popularMovies: popularMovies.results,
       popularShows: popularShows.results,
       top_ratedMovies: top_ratedMovies.results,

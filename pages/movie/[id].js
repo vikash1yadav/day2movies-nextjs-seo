@@ -1,20 +1,20 @@
-import { getSession, useSession } from "next-auth/client";
+// import { getSession, useSession } from "next-auth/client";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Header from "../../components/Header";
-import Hero from "../../components/Hero";
+// import Hero from "../../components/Hero";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
 import MoviesCollection from "../../components/MoviesCollection";
 
 function Movie({ result, recommendedMovie }) {
-  const [session] = useSession();
+  // const [session] = useSession();
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);
-// console.log("recom",recommendedMovie);
+  // console.log("recom",recommendedMovie);
   // useEffect(() => {
   //   // if (!session) {
   //   //   router.push("/");
@@ -27,15 +27,12 @@ function Movie({ result, recommendedMovie }) {
 
   return (
     <>
-    <div className="relative">
-      <Head>
-        <title>{result.title || result.original_name}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
-      {session ? (
-        <Hero />
-      ) : (
+      <div className="relative">
+        <Head>
+          <title>{result.title || result.original_name}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Header />
         <section className="relative z-50">
           <div className="relative min-h-[calc(100vh-72px)]">
             <Image
@@ -125,33 +122,34 @@ function Movie({ result, recommendedMovie }) {
             </div>
           </div>
         </section>
-      )}
-    </div>
-      <MoviesCollection results={recommendedMovie.results} title="Recommended Movies" />
+      </div>
+      <MoviesCollection
+        results={recommendedMovie.results}
+        title="Recommended Movies"
+      />
     </>
-    
   );
 }
 
 export default Movie;
 
 export async function getServerSideProps(context) {
-  const session = await getSession(context);
+  // const session = await getSession(context);
   const { id } = context.query;
 
   const request = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
   ).then((response) => response.json());
 
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`).then((res) => res.json());
-
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
+  ).then((res) => res.json());
 
   return {
     props: {
-      session,
+      // session,
       result: request,
       recommendedMovie: response,
-      
     },
   };
 }
