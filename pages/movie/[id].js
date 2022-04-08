@@ -59,6 +59,12 @@ function Movie({ result, recommendedMovie }) {
   const [posterLink, setposterLink] = useState(
     `${BASE_URL}${result.poster_path}`
   );
+
+  useEffect(() => {
+    setposterLink("");
+  }, [])
+  
+
   useEffect(() => {
     // scroll.scrollToTop({ smooth: true });
     setposterLink(
@@ -148,8 +154,10 @@ function Movie({ result, recommendedMovie }) {
         </Head>
         {/* <Header /> */}
         <section className="relative z-50">
-          <div className="relative min-h-[calc(100vh-72px)]">
-            <Image src={posterLink} layout="fill" objectFit="cover" />
+          <div className="">
+            {/* relative min-h-[calc(50vh-72px)] */}
+            <img src={posterLink} height="50vh" />
+            {/* <img src={posterLink} layout="fill" objectFit="cover" /> */}
           </div>
           <div className="absolute inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
