@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
 import MoviesCollection from "../../components/MoviesCollection";
+// import MovieSummary from "../../components/MovieSummary";
+
 
 export async function getStaticPaths() {
   const popularMoviesRes = await fetch(
@@ -88,6 +90,7 @@ function Movie({ result, recommendedMovie }) {
   );
 
   const movie = result;
+  const baseUrl=""
 
   return (
     <>
@@ -111,7 +114,7 @@ function Movie({ result, recommendedMovie }) {
             property="og:image"
             content={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
           />
-          {/* Twitter */}
+
           <meta property="twitter:card" content="summary_large_image" />
           <meta
             property="twitter:url"
@@ -130,7 +133,6 @@ function Movie({ result, recommendedMovie }) {
             content={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
           />
 
-          {/* Open Graph / Facebook */}
           <meta property="og:type" content="website" />
           <meta
             property="og:url"
@@ -152,10 +154,8 @@ function Movie({ result, recommendedMovie }) {
           <meta property="og:image:height" content="628" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {/* <Header /> */}
-        <section className="relative z-50">
-          <div className="">
-            {/* relative min-h-[calc(50vh-72px)] */}
+        <section className="relative z-50 max-h-[50vh]">
+          <div className=" max-h-[50vh]">
             <img src={posterLink} height="50vh" />
             {/* <img src={posterLink} layout="fill" objectFit="cover" /> */}
           </div>
@@ -206,7 +206,6 @@ function Movie({ result, recommendedMovie }) {
             <h4 className="text-sm md:text-lg max-w-4xl">{result.overview}</h4>
           </div>
 
-          {/* Bg Overlay */}
           {showPlayer && (
             <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50"></div>
           )}
@@ -242,6 +241,8 @@ function Movie({ result, recommendedMovie }) {
         results={recommendedMovie.results}
         title="Recommended Movies"
       />
+
+      {/* <MovieSummary baseUrl={baseUrl} movie={result} /> */}
     </>
   );
 }

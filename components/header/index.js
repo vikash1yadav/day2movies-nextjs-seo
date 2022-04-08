@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 // import { iconButtonClass } from '../../utils';
 import AppHeading from './AppHeading';
 import NavItem from './NavItem';
-// import SearchBar from './SearchBar';
+import SearchBar from './SearchBar';
 const iconButtonClass =
-  "ml-3 p-2 border border-inputPlaceholder hover:bg-bg2 rounded-md";
+  "ml-3 p-2 border border-inputPlaceholder hover:bg-bg2 mr-5 rounded-md";
 
 const AppHeader = () => {
   const [value, setValue] = useState('');
@@ -50,7 +50,7 @@ const AppHeader = () => {
             <NavItem name="Movie" />
             <NavItem name="TV" />
             <div className="mb-2"></div>
-            {/* <SearchBar setValue={setValue} value={value} /> */}
+            <SearchBar setValue={setValue} value={value} />
           </div>
         ) : null}
       </div>
@@ -62,7 +62,7 @@ const AppHeader = () => {
             <NavItem name="TV" />
           </nav>
         </div>
-        {/* <SearchBar setValue={setValue} value={value} /> */}
+        <SearchBar setValue={setValue} value={value} />
       </div>
     </header>
   );
