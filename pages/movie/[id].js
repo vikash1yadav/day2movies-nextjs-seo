@@ -1,5 +1,4 @@
 // import { getSession, useSession } from "next-auth/client";
-import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -10,7 +9,8 @@ import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
 import MoviesCollection from "../../components/MoviesCollection";
 // import MovieSummary from "../../components/MovieSummary";
-
+import MovieSeo from "../../components/SEO/movie-seo";
+import MovieList2 from "../../components/movieList";
 
 export async function getStaticPaths() {
   const popularMoviesRes = await fetch(
@@ -63,22 +63,18 @@ function Movie({ result, recommendedMovie }) {
   );
 
   useEffect(() => {
-    setposterLink("");
-  }, [])
-  
-
-  useEffect(() => {
     // scroll.scrollToTop({ smooth: true });
+    console.log("show hit");
     setposterLink(
       `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
         `${BASE_URL}${result.poster_path}`
     );
-  }, []);
+  }, [result]);
 
   if (result.success === false) {
     // router.push(`/`);
     return (
-      <h1>
+      <h1 className="text-3xl items-center">
         Not found!!
         {/* <HomeIcon fill="currentColor" width="1.125em" /> */}
       </h1>
@@ -94,90 +90,18 @@ function Movie({ result, recommendedMovie }) {
 
   return (
     <>
-      <div className="relative">
-        <Head>
-          <title>{`${movie.title} - day2movies`}</title>
-          <meta
-            name="description"
-            content={`${movie.title}, ${movie.overview}`}
-          />
-          <meta
-            property="og:title"
-            content={`${movie.title} day2movies - watch movies & series online for free`}
-            key="title"
-          />
-          <meta
-            property="og:description"
-            content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
-          />
-          <meta
-            property="og:image"
-            content={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-          />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta
-            property="twitter:url"
-            content={`https://day2movies.com/${movie.id}`}
-          />
-          <meta
-            property="twitter:title"
-            content={`${movie.title} day2movies - watch movies & series online for free`}
-          />
-          <meta
-            property="twitter:description"
-            content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
-          />
-          <meta
-            property="twitter:image"
-            content={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-          />
-
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`https://day2movies.com/${movie.id}`}
-          />
-          <meta
-            property="og:title"
-            content={`${movie.title} day2movies - watch movies & series online for free`}
-          />
-          <meta
-            property="og:description"
-            content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
-          />
-          <meta
-            property="og:image"
-            content={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-          />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="628" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <section className="relative z-50 max-h-[50vh]">
-          <div className=" max-h-[50vh]">
-            <img src={posterLink} height="50vh" />
-            {/* <img src={posterLink} layout="fill" objectFit="cover" /> */}
-          </div>
-          <div className="absolute inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-              {result.title || result.original_name}
-            </h1>
-            <div className="flex items-center space-x-3 md:space-x-5">
-              <button className="text-xs md:text-base bg-[#f9f9f9] text-black flex items-center justify-center py-2.5 px-6 rounded hover:bg-[#c6c6c6]">
-                <img
-                  src="/images/play-icon-black.svg"
-                  alt=""
-                  className="h-6 md:h-8"
-                />
-                <span className="uppercase font-medium tracking-wide">
-                  Play
-                </span>
-              </button>
-
+      <MovieSeo movie={result} />
+      <div className="flex w-full h-full">
+        <section className="h-full w-screen max-h-[70vh]">
+          <div className="flex flex-row md:h-[350px] sm:h-[150px] lg:h-[70vh]">
+            <img src={posterLink} 
+              className="w-full blur-[2px]  object-cover"
+            />
+            <div className="absolute z-50  border-red cursor-pointer left-[40%] top-[200px] lg:left-[50%] lg:top-[40%] inset-y-28 justify-center"
+              onClick={() => setShowPlayer(true)}
+            >
               <button
-                className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-2.5 px-6 rounded hover:bg-[#c6c6c6]"
-                onClick={() => setShowPlayer(true)}
+                className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-2.5 px-6 rounded-full"    
               >
                 <img
                   src="/images/play-icon-white.svg"
@@ -185,27 +109,11 @@ function Movie({ result, recommendedMovie }) {
                   className="h-6 md:h-8"
                 />
                 <span className="uppercase font-medium tracking-wide">
-                  Trailer
+                 
                 </span>
               </button>
-
-              <div className="rounded-full border-2 border-white flex items-center justify-center w-11 h-11 cursor-pointer bg-black/60">
-                <PlusIcon className="h-6" />
-              </div>
-
-              <div className="rounded-full border-2 border-white flex items-center justify-center w-11 h-11 cursor-pointer bg-black/60">
-                <img src="/images/group-icon.svg" alt="" />
-              </div>
             </div>
-
-            <p className="text-xs md:text-sm">
-              {result.release_date || result.first_air_date} •{" "}
-              {Math.floor(result.runtime / 60)}h {result.runtime % 60}m •{" "}
-              {result.genres.map((genre) => genre.name + " ")}{" "}
-            </p>
-            <h4 className="text-sm md:text-lg max-w-4xl">{result.overview}</h4>
           </div>
-
           {showPlayer && (
             <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50"></div>
           )}
@@ -237,12 +145,21 @@ function Movie({ result, recommendedMovie }) {
           </div>
         </section>
       </div>
-      <MoviesCollection
+      <div className="flex flex-col m-4">
+        <h1 className="text-3xl m-2 sm:text-4xl md:text-5xl font-bold">
+          {result.title || result.original_name}
+        </h1>
+        <p className="text-xs m-2 md:text-sm">
+          {result.release_date || result.first_air_date} •{" "}
+          {Math.floor(result.runtime / 60)}h {result.runtime % 60}m •{" "}
+          {result.genres.map((genre) => genre.name + " ")}{" "}
+        </p>
+        <h4 className="text-sm m-2 md:text-lg max-w-4xl">{result.overview}</h4>
+      </div>
+      <MovieList2
         results={recommendedMovie.results}
         title="Recommended Movies"
       />
-
-      {/* <MovieSummary baseUrl={baseUrl} movie={result} /> */}
     </>
   );
 }

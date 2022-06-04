@@ -32,11 +32,11 @@ function Slider(result) {
     //           // {`https://image.tmdb.org/t/p/w780/${poster[0].poster_path}`}
     //           alt=""
     //         />
-    //         <div className="absolute inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
+    //         <div className="absolute h-[50%] inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
     //           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold pointer">
     //             {item.title || item.original_name}
     //           </h1>
-    //           <p>{item.overview}</p>
+    //           <p className="whitespace-normal text-ellipsis overflow-hidden ...">{item.overview}</p>
     //         </div>
     //       </div>
     //     ))}
