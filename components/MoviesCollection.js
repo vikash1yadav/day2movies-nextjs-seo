@@ -6,7 +6,7 @@ function MoviesCollection({ results, title }) {
       <h2 className="font-semibold m-5">{title}</h2>      
       <div className="post">
         {/* flex flex-row flex-wrap */}
-        {results.map((result) => (
+        {results.length>0 && results.map((result) => (
           <MovieThumbnail key={result.id} result={result} />
         ))}
       </div>

@@ -1,9 +1,7 @@
 // import { getSession, useSession } from "next-auth/client";
 import Head from "next/head";
-// import Brands from "../components/Brands";
 import MoviesCollection from "../components/MoviesCollection";
-// import Header from "../components/Header";
-// import Hero from "../components/Hero";
+
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
 
@@ -13,8 +11,6 @@ export default function Home({
   top_ratedMovies,
   top_ratedShows,
 }) {
-  // const [session] = useSession();
-  // console.log("recom", popularMovies);
 
   return (
     <div>

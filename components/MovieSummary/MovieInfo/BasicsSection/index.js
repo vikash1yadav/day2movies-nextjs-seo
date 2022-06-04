@@ -1,35 +1,20 @@
 
-// import clsx from 'clsx';
-
-import Rating from 'components/Rating';
-import LanguagesRuntimeRelease from './LanguagesRuntimeRelease';
-
+import cx from "../../../../utils/class-names";
 const BasicsSection = ({
-  className,
-  voteAverage,
-  spokenLanguages,
-  runtime,
-  releaseDate
-}) => (
-  <>
-    {/* <div className={clsx('basics-section', className)}> */}
-    <div>
-      <Rating
-        withValue
-        voteAverage={voteAverage} />
-      <LanguagesRuntimeRelease
-        spokenLanguages={spokenLanguages}
-        runtime={runtime}
-        releaseDate={releaseDate} />
+  classNames,
+  heading,
+  movie,
+children
+}) => {
+  return <>
+    <div
+      className={cx("flex flex-row mb-4 sm:h-14  items-center rounded-lg border-[1px]", )}>
+      <div className={cx("font-semibold min-w-[100px] max-w-[120px] sm:w-[120px] pl-2 py-2 overflow-hidden rounded-lg  bg-gray-700", classNames?.root)}>{heading}:</div>
+      <h1 className={cx("pl-4", classNames?.content)}>
+        {children}
+      </h1>
     </div>
-    <style jsx>{`
-      .basics-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-    `}</style>
   </>
-);
+}
 
 export default BasicsSection;

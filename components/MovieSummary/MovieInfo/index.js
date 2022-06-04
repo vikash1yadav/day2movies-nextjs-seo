@@ -1,20 +1,7 @@
+import React from "react";
+import BasicsSection from "./BasicsSection/index";
 
-
-import InfoWrapper from 'parts/InfoWrapper';
-import Header from 'parts/Header';
-// import BasicsSection from './BasicsSection';
-import TheGenresSection from './TheGenresSection';
-import TheSynopsisSection from './TheSynopsisSection';
-import TheCastSection from './TheCastSection';
-// import MovieAdSection from './MovieAdSection';
-import SIZE_TYPES from 'utils/constants/size-types';
-import withTheme from 'utils/hocs/withTheme';
-
-const MovieInfo = ({
-  theme,
-  baseUrl,
-  movie
-}) => {
+const MovieInfo = ({  movie}) => {
   const [innerWidth, setinnerWidth] = React.useState();
   const [cast, setcast] = React.useState([]);
   React.useEffect(() => {
@@ -22,63 +9,53 @@ const MovieInfo = ({
     setinnerWidth(screen.width);
     setcast(movie.cast);
   }, [movie]);
-console.log("movie d", innerWidth,);
- 
+  console.log("movie d", innerWidth,);
+
   return <>
-    <InfoWrapper>
-      <Header
-        size={SIZE_TYPES.LARGE}
-        title={movie.title}
-        subtitle={movie.tagline} />
-      <BasicsSection
-        className='basic-section-bottom-margin'
-        voteAverage={movie.vote_average}
-        spokenLanguages={movie.spoken_languages}
-        runtime={movie.runtime}
-        releaseDate={movie.release_date} />
-      <TheGenresSection
-        className='the-genres-section-bottom-margin'
-        genres={movie.genres} />
-      <TheSynopsisSection
-        className='the-synopsis-section-bottom-margin'
-        synopsis={movie.overview || 'There is no synopsis available...'} />
-      {movie.cast ? (
-      <TheCastSection
-      className='cast-section-bottom-margin'
-      cast={movie.cast}
-      baseUrl={baseUrl} />        
-      ):null}
+    <div className="flex flex-row flex-wrap justify-center my-12 m-2">
+      <div className="h-[200px] w-[350px] lg:h-[400px]">
+        <img className="rounded-lg h-full"
+          src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+          alt={movie.title + ", day2movies , watch latest movie online for free on day2movies"}
+          title={movie.title || movie.original_name + " day2movies"} />
+      </div>
+      <div>
+        <BasicsSection movie={movie} heading="Title"
+          classNames={{
+            root:"text-1xl sm:text-2xl md:text-3xl ",
+            content:"text-1xl sm:text-1xl md:text-2xl font-semibold"
+        }}
+        >  {movie.title || movie.original_name} 
+        </BasicsSection>
+        <BasicsSection movie={movie} heading="Genre"
+          classNames={{
+            root:"back",
+            content:"text-xs md:text-sm "
+          }}
+        >
+          {movie.genres.map((genre) => genre.name + ", ")}
+        </BasicsSection>
+        <BasicsSection movie={movie} heading="Realsed"
+          classNames={{
+            root: "back",
+            content: "text-xs md:text-sm"
+          }}
+        >
+          {movie.release_date || movie.first_air_date}
+        </BasicsSection>
+        <BasicsSection movie={movie} heading="Run Time"
+          classNames={{
+            root: "back",
+            content: "text-xs md:text-sm"
+          }}
+        >
+          {Math.floor(movie.runtime / 60)} hrs {movie.runtime % 60}m {" "}
+        </BasicsSection>
+        <h4 className="text-sm m-2 md:text-lg max-w-4xl">{movie.overview}</h4>
+      </div>
 
-      {/* <MovieAdSection
-        websiteUrl={movie.homepage}
-        imdbId={movie.imdb_id}
-        videos={movie.videos.results} /> */}
-    </InfoWrapper>
-    <style jsx>{`
-      :global(.basic-section-bottom-margin) {
-        margin-bottom: 5rem;
-      }
-
-      :global(.the-genres-section-bottom-margin) {
-        margin-bottom: 3rem;
-      }
-
-      :global(.the-synopsis-section-bottom-margin) {
-        margin-bottom: 3rem;
-      }
-
-      :global(.cast-section-bottom-margin) {
-        margin-bottom: 5rem;
-      }
-
-      @media ${theme.mediaQueries.smaller} {
-        :global(.basic-section-bottom-margin) {
-          margin-bottom: 1rem;
-          margin-top: 1rem;
-        }
-      }
-    `}</style>
+    </div>
   </>
 };
 
-export default withTheme(MovieInfo);
+export default MovieInfo;

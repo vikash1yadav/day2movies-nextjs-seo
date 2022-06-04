@@ -5,7 +5,7 @@ function ShowsCollection({ results, title }) {
     <div className="max-w-[1400px] mx-auto">
       <h2 className="font-semibold m-5">{title}</h2>
       <div className="post">
-        {results.map((result) => (
+        {results.length>0 && results.map((result) => (
           <ShowThumbnail key={result.id} result={result} />
         ))}
       </div>
