@@ -14,28 +14,29 @@ const reformatTitle = (title) => {
   return title.replaceAll(" ", "-").toLowerCase();
 };
 
-export async function getStaticPaths() {
-  const popularMoviesRes = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
-  );
-  const popularMovies = await popularMoviesRes.json();
-  // const posts = await res.json();
-  // console.log(popularMovies);
-  // Get the paths we want to pre-render based on posts
-  const paths = popularMovies.results.map((post) => ({
-    params: {
-      movie_name: post.original_title.replace(" ", "-"),
-      movie_id: post.id.toString(),
-    },
-  }));
+// export async function getStaticPaths() {
+//   const popularMoviesRes = await fetch(
+//     `https://api.themoviedb.org/3/movie/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
+//   );
+//   const popularMovies = await popularMoviesRes.json();
+//   // const posts = await res.json();
+//   // console.log(popularMovies);
+//   // Get the paths we want to pre-render based on posts
+//   const paths = popularMovies.results.map((post) => ({
+//     params: {
+//       movie_name: post.original_title.replaceAll(" ", "-").toLowerCase(),
+//       movie_id: post.id.toString(),
+//     },
+//   }));
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
-  return { paths, fallback: "blocking" };
-}
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: blocking } will server-render pages
+//   // on-demand if the path doesn't exist.
+//   return { paths, fallback: "blocking" };
+// }
 
-export async function getStaticProps(context) {
+//getServerSideProps getStaticProps
+export async function getServerSideProps(context) {
   // const session = await getSession(context);
   // const { id } = context.query;
   const id = context.params.movie_id;
