@@ -5,8 +5,8 @@ import NextLink from 'next/link';
 //   name: 'TV' | 'Movies';
 // }
 
-const NavItem = ({ name }) => (
-  <NextLink href={`/${name.toLowerCase()}`}>
+const NavItem = ({ name, link }) => (
+  <NextLink href={`/${link}`}>
     <a className="text-xl sm:text-lg hover:text-textHighlight font-semibold tracking-wide ml-5 py-3 sm:py-5 sm:mr-5">
       {name}
     </a>

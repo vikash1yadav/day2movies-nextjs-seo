@@ -1,13 +1,18 @@
 // import { getSession, useSession } from "next-auth/client";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { PlusIcon, XIcon } from "@heroicons/react/solid";
-import ReactPlayer from "react-player/lazy";
-import MoviesCollection from "../../components/MoviesCollection";
-import MovieSummary from "../../components/MovieSummary";
-import MovieSeo from "../../components/SEO/movie-seo";
-import MovieList2 from "../../components/movieList";
+// import { PlusIcon, XIcon } from "@heroicons/react/solid";
+// import ReactPlayer from "react-player/lazy";
+import MoviesCollection from "../../../../components/MoviesCollection";
+import MovieSummary from "../../../../components/MovieSummary";
+import MovieSeo from "../../../../components/SEO/movie-seo";
+// import MovieList2 from "../../../../components/movieList";
+import ErrorPage from "../../../404";
+
+const reformatTitle = (title) => {
+  return title.replaceAll(" ", "-").toLowerCase();
+};
 
 export async function getStaticPaths() {
   const popularMoviesRes = await fetch(
@@ -18,7 +23,10 @@ export async function getStaticPaths() {
   // console.log(popularMovies);
   // Get the paths we want to pre-render based on posts
   const paths = popularMovies.results.map((post) => ({
-    params: { id: post.id.toString() },
+    params: {
+      movie_name: post.original_title.replace(" ", "-"),
+      movie_id: post.id.toString(),
+    },
   }));
 
   // We'll pre-render only these paths at build time.
@@ -30,7 +38,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   // const session = await getSession(context);
   // const { id } = context.query;
-  const id = context.params.id;
+  const id = context.params.movie_id;
 
   const request = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
@@ -70,23 +78,19 @@ function Movie({ result, recommendedMovie }) {
   }, [result]);
 
   if (result.success === false) {
-    // router.push(`/`);
-    return (
-      <h1 className="text-3xl items-center">
-        Not found!!
-        {/* <HomeIcon fill="currentColor" width="1.125em" /> */}
-      </h1>
-    );
+    return (<ErrorPage/>);
   }
 
   return (
     <>
       <MovieSeo movie={result} />
       <MovieSummary result={result} />
-      <MovieList2
+      {/* <MovieList2
         results={recommendedMovie.results}
+        result={recommendedMovie.results}
         title="Recommended Movies"
-      />
+      /> */}
+      {recommendedMovie.results && <MoviesCollection results={recommendedMovie.results} title="Recommended Movies" />}
     </>
   );
 }

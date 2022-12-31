@@ -47,8 +47,8 @@ const AppHeader = () => {
         </button>
         {expandMenu ? (
           <div className="absolute bg-[#040714] top-14 w-full bg-bgFull flex flex-col pt-2 pb-6">
-            <NavItem name="Movie" />
-            <NavItem name="TV" />
+            <NavItem name="Movies" link="movie" />
+            <NavItem name="Series" link="series" />
             <div className="mb-2"></div>
             <SearchBar setValue={setValue} value={value} />
           </div>
@@ -58,8 +58,8 @@ const AppHeader = () => {
         <div className="flex items-center">
           <AppHeading />
           <nav>
-            <NavItem name="Movies" />
-            <NavItem name="TV" />
+            <NavItem name="Movies" link="movie" />
+            <NavItem name="Series" link="series"/>
           </nav>
         </div>
         <SearchBar setValue={setValue} value={value} />

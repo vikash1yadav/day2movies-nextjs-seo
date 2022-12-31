@@ -5,6 +5,17 @@ function ShowThumbnail({ result }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
 
+  const checkTvOrMovieFromTitle = (original_title, original_name) => {
+    if (original_title) {
+      return "movie";
+    } else if (original_name) {
+      return "series";
+    }
+  };
+
+  const reformatTitle = (title) => {
+    return title.replaceAll(" ", "-").toLowerCase();
+  };
   return (
     <>
       {/* <div className="">
@@ -34,7 +45,7 @@ function ShowThumbnail({ result }) {
 
       <div
         className="postItem"
-        onClick={() => router.push(`/movie/${result.id}`)}
+        onClick={() => router.push(`/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${checkTvOrMovieFromTitle(result.original_title, result.original_name) == "movie" ? reformatTitle(result.original_title) : reformatTitle(result.original_name)}/${result.id}`)}
       >
         <div
           className="link"

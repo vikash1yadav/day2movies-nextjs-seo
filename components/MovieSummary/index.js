@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
 import MovieInfo from "./MovieInfo";
+import Image from "next/image";
 
 
 const MovieSummary = ({ result }) => {

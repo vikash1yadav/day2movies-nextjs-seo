@@ -10,8 +10,9 @@ export default function Home({
   popularShows,
   top_ratedMovies,
   top_ratedShows,
+  trendingNow
 }) {
-
+  console.log("trendingNow", trendingNow);
   return (
     <div>
       <Head>
@@ -54,12 +55,12 @@ export default function Home({
       </Head>
       {/* <Header /> */}
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
-        <Slider results={popularMovies} />
+        <Slider results={trendingNow || popularMovies} />
         {/* <Brands /> */}
-        <MoviesCollection results={popularMovies} title="Popular Movies" />
-        <ShowsCollection results={popularShows} title="Popular Shows" />
-        <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />
-        <ShowsCollection results={top_ratedShows} title="Top Rated Shows" />
+        {popularMovies &&<MoviesCollection results={popularMovies} title="Popular Movies" />}
+        {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" />}
+        {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
+        {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
     </div>
   );
@@ -69,11 +70,13 @@ export async function getStaticProps() {
   // const session = await getSession(context);
 
   const [
+    trendingShowRes,
     popularMoviesRes,
     popularShowsRes,
     top_ratedMoviesRes,
     top_ratedShowsRes,
   ] = await Promise.all([
+    fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=abb29bea88e171807e8533520836bfce`),
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
     ),
@@ -87,8 +90,9 @@ export async function getStaticProps() {
       `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
     ),
   ]);
-  const [popularMovies, popularShows, top_ratedMovies, top_ratedShows] =
+  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows] =
     await Promise.all([
+      trendingShowRes.json(),
       popularMoviesRes.json(),
       popularShowsRes.json(),
       top_ratedMoviesRes.json(),
@@ -97,6 +101,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      trendingNow: trendingNow.results,
       popularMovies: popularMovies.results,
       popularShows: popularShows.results,
       top_ratedMovies: top_ratedMovies.results,

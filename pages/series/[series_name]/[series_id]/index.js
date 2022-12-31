@@ -1,4 +1,3 @@
-// import { getSession, useSession } from "next-auth/client";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -7,32 +6,33 @@ import { useState } from "react";
 // import Hero from "../../components/Hero";
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
+import ShowsCollection from "../../../../components/ShowsCollection";
+import ErrorPage from "../../../404";
 
-function Show({ result }) {
-  // const [session] = useSession();
+function Show({ result, recommendedShow }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);
 
-  // useEffect(() => {
-  //   // if (!session) {
-  //   //   router.push("/");
-  //   // }
-  // }, []);
-
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
+  if (result.success === false) {
+    return (<ErrorPage />);
+  }
 
   return (
-    <div className="relative">
+    <>
+      <div className="relative">
       <Head>
         <title>{result.title || result.original_name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <Header /> */}
-      <section className="relative z-50">
-        <div className="relative min-h-[calc(100vh-72px)]">
+        <section
+          className="relative"
+        >
+          <div className="relative min-h-[calc(100vh-72px)] " >
           <Image
             src={
               `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
@@ -42,8 +42,11 @@ function Show({ result }) {
             objectFit="cover"
           />
         </div>
-        <div className="absolute inset-y-12 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6 z-50">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+          <div
+            className="absolute bottom-10  md:inset-y-auto md:bottom-0 inset-x-4 md:inset-x-12 space-y-6 z-50"
+            // inset-y-12 md:inset-y-auto md:bottom-0 inset-x-4 md:inset-x-12 space-y-6 z-50
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             {result.title || result.original_name}
           </h1>
           <div className="flex items-center space-x-3 md:space-x-5">
@@ -119,24 +122,28 @@ function Show({ result }) {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      {recommendedShow && <ShowsCollection results={recommendedShow} title="Recommended Shows" />}
+    </>
   );
 }
 
 export default Show;
 
 export async function getServerSideProps(context) {
-  // const session = await getSession(context);
-  const { id } = context.query;
+  const { series_id } = context.query;
 
   const request = await fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
+    `https://api.themoviedb.org/3/tv/${series_id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
   ).then((response) => response.json());
 
+  const response = await fetch(
+    `https://api.themoviedb.org/3/tv/${series_id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
+  ).then((res) => res.json());
   return {
     props: {
-      // session,
       result: request,
+      recommendedShow: response.results||null,
     },
   };
 }
