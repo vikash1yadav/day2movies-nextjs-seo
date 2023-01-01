@@ -9,8 +9,11 @@ import ReactPlayer from "react-player/lazy";
 import ShowsCollection from "../../../../components/ShowsCollection";
 import ErrorPage from "../../../404";
 import MovieSeo from "../../../../components/SEO/movie-seo";
+import MovieList2 from "../../../../components/movieList";
 
-function Show({ result, recommendedShow }) {
+function Show({ result, recommendedShow, tvSeasonDetails }) {
+
+  console.log("tvSeasonDetails", tvSeasonDetails);
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);
@@ -21,6 +24,12 @@ function Show({ result, recommendedShow }) {
   if (result.success === false) {
     return (<ErrorPage />);
   }
+
+  const filterStillPath = (episodes) => {
+    return episodes.map((episode) =>
+      episode.episodes.filter((episode) => episode.still_path !== null)
+    );
+  };
 
   return (
     <>
@@ -123,7 +132,18 @@ function Show({ result, recommendedShow }) {
             />
           </div>
         </div>
-      </section>
+        </section>
+        <div id="episodes" className="mb-4 my-lg-2">
+          {filterStillPath(tvSeasonDetails).map((episode) => (
+            <MovieList2
+              results={episode}
+              title="Episode"//{`S${episode.season_number} E${episode.episode_number} . ${episode.air_date}`}
+            />
+          ))}
+        </div>
+        <div>
+          {result.seasons && <ShowsCollection results={result.seasons} title="Seasons" />}
+        </div>
       </div>
       {recommendedShow && <ShowsCollection results={recommendedShow} title="Recommended Shows" />}
     </>
@@ -134,10 +154,41 @@ export default Show;
 
 export async function getServerSideProps(context) {
   const { series_id } = context.query;
+  const apiKey = process.env.API_KEY;
 
-  const request = await fetch(
-    `https://api.themoviedb.org/3/tv/${series_id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
-  ).then((response) => response.json());
+  const generateEndpoint = (id, seasons) => {
+    return seasons.map(
+      (season) =>
+        `https://api.themoviedb.org/3/tv/${id}/season/${season.season_number}?api_key=${apiKey}&language=en-US&append_to_response=videos`
+    );
+  };
+
+  const getTvSeasonDetails = async (id, seasons) => {
+    const generatedEndpoint = await generateEndpoint(id, seasons);
+    const requestTvSeasonDetails = await generatedEndpoint.map((endpoint) =>
+      fetch(endpoint)
+    );
+    const responseTvSeasonDetails = await Promise.all(requestTvSeasonDetails);
+    const responseTvSeasonDetailsJson = await Promise.all(
+      responseTvSeasonDetails.map((response) => response.json())
+    );
+    return responseTvSeasonDetailsJson;
+  };
+
+  let request;
+  let tvSeasonDetails;
+    await fetch(
+    `https://api.themoviedb.org/3/tv/${series_id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
+    ).then((response) => response.json()).then(async (responseTvDetails) => {
+      request = responseTvDetails;
+      return await getTvSeasonDetails(
+        responseTvDetails.id,
+        responseTvDetails.seasons
+      )
+    }).then((res) => {
+      console.log("res", res);
+      tvSeasonDetails = res;
+  });
 
   const response = await fetch(
     `https://api.themoviedb.org/3/tv/${series_id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
@@ -145,7 +196,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       result: request,
-      recommendedShow: response.results||null,
+      recommendedShow: response.results || null,
+      tvSeasonDetails
     },
   };
 }

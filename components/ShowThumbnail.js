@@ -18,10 +18,15 @@ function ShowThumbnail({ result }) {
   };
   return (
     <>
-      {/* <div className="">
     <div
-      className="flex min-w-[250px] min-h-[170px] md:min-w-[330px] md:min-h-[210px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300"
-      onClick={() => router.push(`/show/${result.id}`)}
+        className={`flex m-1 
+               rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px]
+        border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl
+         transform hover:scale-105 transition duration-300`}
+        // min-w-[20vw]
+        // md:min-w-[200px] md:min-h-[330px]
+          // className="flex min-w-[250px] min-h-[170px] md:min-w-[330px] md:min-h-[210px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300"
+          onClick={() => router.push(`/show/${result.id}`)}
         >
 
       <Image
@@ -29,21 +34,24 @@ function ShowThumbnail({ result }) {
           `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
           `${BASE_URL}${result.poster_path}`
         }
-        width={330}
-        height={210}
-        objectFit="cover"
-        className="rounded-lg"
+        width={190}
+        height={330}
+            objectFit="cover"
+            // layout="fill"
+          className="rounded-lg  aspect-[4/3]"
           />
-          <div className="absolute inset-y-12 md:inset-y-auto md:bottom-5 background-blur inset-x-4 md:inset-x-12 space-y-6 z-50">
-            <h1 className="text-xl sm:text-xl md:text-xl font-bold">
-              {result.title || result.original_name}
-              </h1>
+          <div
+            className="absolute bottom-2  md:inset-y-auto md:bottom-2 background-blur inset-x-1 md:inset-x-2 space-y-4 z-50"
+
+          >
+            <h2 className="font-bold">
+              {(result.title || result.original_name )|| `${result.name}. ${ result.episode_count} Episodes` }
+              </h2>
           </div>
           
         </div>
-      </div> */}
 
-      <div
+      {/* <div
         className="postItem"
         onClick={() => router.push(`/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${checkTvOrMovieFromTitle(result.original_title, result.original_name) == "movie" ? reformatTitle(result.original_title) : reformatTitle(result.original_name)}/${result.id}`)}
       >
@@ -69,7 +77,7 @@ function ShowThumbnail({ result }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

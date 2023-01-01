@@ -27,7 +27,7 @@ function MovieThumbnail({ result }) {
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <img
-          className="postImg"
+          className="postImg hover:scale-105"
           src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
           alt={result.title + ", day2movies , watch latest movie online for free on day2movies"}
           title={result.title || result.original_name + " day2movies"}
