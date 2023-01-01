@@ -11,7 +11,7 @@ import MovieSeo from "../../../../components/SEO/movie-seo";
 import ErrorPage from "../../../404";
 
 const reformatTitle = (title) => {
-  return title.replaceAll(" ", "-").toLowerCase();
+  return title.replace(/ /g, "-").toLowerCase();
 };
 
 // export async function getStaticPaths() {
@@ -24,7 +24,7 @@ const reformatTitle = (title) => {
 //   // Get the paths we want to pre-render based on posts
 //   const paths = popularMovies.results.map((post) => ({
 //     params: {
-//       movie_name: post.original_title.replaceAll(" ", "-").toLowerCase(),
+//       movie_name: post.original_title.replace(/ /g, "-").toLowerCase(),
 //       movie_id: post.id.toString(),
 //     },
 //   }));
