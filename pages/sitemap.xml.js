@@ -1,5 +1,5 @@
 // import { Post } from "../models/Post";
-
+import Constant from "../utils/constant";
 const generateSiteMap = (data) => {
 
     const posts=[];
@@ -23,12 +23,12 @@ const generateSiteMap = (data) => {
     return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-      <loc>https://yourdomain.com</loc>
+      <loc>${Constant.DAY2MOVIE_URL}</loc>
     </url>
     ${posts && posts.map(item => {
         return `<url>
         <loc>
-          https://yourdomain.com/${checkTvOrMovieFromTitle(item.original_title, item.original_name)}/${checkTvOrMovieFromTitle(item.original_title, item.original_name) == "movie" ? reformatTitle(item.original_title) : reformatTitle(item.original_name)}/${item.id}
+          ${Constant.DAY2MOVIE_URL}/${checkTvOrMovieFromTitle(item.original_title, item.original_name)}/${checkTvOrMovieFromTitle(item.original_title, item.original_name) == "movie" ? reformatTitle(item.original_title) : reformatTitle(item.original_name)}/${item.id}
         </loc>
       </url>`;
     }).join('')}
