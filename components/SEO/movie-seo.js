@@ -4,19 +4,19 @@ import Head from "next/head";
 function MovieSeo({ movie}) {
   return (
       <Head>
-          <title>{`${movie.title} - day2movies`}</title>
+          <title>{`${movie.title || movie.original_name} - day2movies`}</title>
           <meta
               name="description"
-              content={`${movie.title}, ${movie.overview}`}
+              content={`${movie.title || movie.original_name}, ${movie.overview}`}
           />
           <meta
               property="og:title"
-              content={`${movie.title} day2movies - watch movies & series online for free`}
+              content={`${movie.title || movie.original_name} day2movies - watch movies & series online for free`}
               key="title"
           />
           <meta
               property="og:description"
-              content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
+              content={`${movie.title || movie.original_name}, ${movie.overview} day2movies watch movies & series online for free`}
           />
           <meta
               property="og:image"
@@ -30,11 +30,11 @@ function MovieSeo({ movie}) {
           />
           <meta
               property="twitter:title"
-              content={`${movie.title} day2movies - watch movies & series online for free`}
+              content={`${movie.title || movie.original_name} day2movies - watch movies & series online for free`}
           />
           <meta
               property="twitter:description"
-              content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
+              content={`${movie.title || movie.original_name}, ${movie.overview} day2movies watch movies & series online for free`}
           />
           <meta
               property="twitter:image"
@@ -48,11 +48,11 @@ function MovieSeo({ movie}) {
           />
           <meta
               property="og:title"
-              content={`${movie.title} day2movies - watch movies & series online for free`}
+              content={`${movie.title || movie.original_name} day2movies - watch movies & series online for free`}
           />
           <meta
               property="og:description"
-              content={`${movie.title}, ${movie.overview} day2movies watch movies & series online for free`}
+              content={`${movie.title || movie.original_name}, ${movie.overview} day2movies watch movies & series online for free`}
           />
           <meta
               property="og:image"

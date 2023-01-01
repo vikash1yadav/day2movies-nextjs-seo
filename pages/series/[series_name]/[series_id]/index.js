@@ -8,6 +8,7 @@ import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import ReactPlayer from "react-player/lazy";
 import ShowsCollection from "../../../../components/ShowsCollection";
 import ErrorPage from "../../../404";
+import MovieSeo from "../../../../components/SEO/movie-seo";
 
 function Show({ result, recommendedShow }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
@@ -24,10 +25,11 @@ function Show({ result, recommendedShow }) {
   return (
     <>
       <div className="relative">
-      <Head>
+        <MovieSeo movie={result} />
+      {/* <Head>
         <title>{result.title || result.original_name}</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       {/* <Header /> */}
         <section
           className="relative"
