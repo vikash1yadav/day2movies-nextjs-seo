@@ -24,6 +24,8 @@ export default function Carousel(props) {
             index={index}
             backdrop={carousel.backdrop_path}
             title={carousel.original_name || carousel.title}
+            original_name={carousel.original_name}
+            original_title={carousel.original_title}
             overview={carousel.overview}
             id={carousel.id}
             // genres={genreIdToName(carousel.genre_ids, genreList)}
