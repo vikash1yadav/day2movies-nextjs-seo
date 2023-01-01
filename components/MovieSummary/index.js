@@ -18,7 +18,6 @@ const MovieSummary = ({ result }) => {
   );
   useEffect(() => {
     // scroll.scrollToTop({ smooth: true });
-    console.log("show hit");
     setShowPlayer(false);
     setposterLink(
       `${BASE_URL}${result.backdrop_path || result.poster_path}` ||

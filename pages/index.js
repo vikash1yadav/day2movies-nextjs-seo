@@ -12,7 +12,6 @@ export default function Home({
   top_ratedShows,
   trendingNow
 }) {
-  console.log("trendingNow", trendingNow);
   return (
     <div>
       <Head>

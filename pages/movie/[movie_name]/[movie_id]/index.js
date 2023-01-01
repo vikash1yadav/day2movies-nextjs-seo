@@ -55,7 +55,7 @@ export async function getServerSideProps(context) {
       result: request,
       recommendedMovie: response,
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 }
 
@@ -70,7 +70,6 @@ function Movie({ result, recommendedMovie }) {
 
   useEffect(() => {
     // scroll.scrollToTop({ smooth: true });
-    console.log("show hit");
     setShowPlayer(false);
     setposterLink(
       `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
