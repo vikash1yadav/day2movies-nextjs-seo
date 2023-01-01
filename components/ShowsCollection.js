@@ -2,7 +2,7 @@ import ShowThumbnail from "./ShowThumbnail";
 
 function ShowsCollection({ results, title }) {
   return (
-    <div className="w-full inset-x-12 "
+    <div className="w-full inset-x-12 mt-4 "
     // max-w-[1400px] mx-auto 
     >
       <h1 className="text-xl sm:text-xl md:text-xl font-bold mx-4">{title}</h1>

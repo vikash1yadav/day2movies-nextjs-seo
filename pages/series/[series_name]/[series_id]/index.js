@@ -12,8 +12,6 @@ import MovieSeo from "../../../../components/SEO/movie-seo";
 import MovieList2 from "../../../../components/movieList";
 
 function Show({ result, recommendedShow, tvSeasonDetails }) {
-
-  console.log("tvSeasonDetails", tvSeasonDetails);
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);
@@ -134,12 +132,18 @@ function Show({ result, recommendedShow, tvSeasonDetails }) {
         </div>
         </section>
         <div id="episodes" className="mb-4 my-lg-2">
-          {filterStillPath(tvSeasonDetails).map((episode) => (
+          {/* {filterStillPath(tvSeasonDetails).map((episode, index) => (
             <MovieList2
+              key={index}
               results={episode}
-              title="Episode"//{`S${episode.season_number} E${episode.episode_number} . ${episode.air_date}`}
+              title={`${tvSeasonDetails[index].name} `}
             />
-          ))}
+          ))} */}
+          <MovieList2
+            key={index}
+            results={tvSeasonDetails[0].episodes}
+            title={`${tvSeasonDetails[0].name} `}
+          />
         </div>
         <div>
           {result.seasons && <ShowsCollection results={result.seasons} title="Seasons" />}
@@ -186,7 +190,6 @@ export async function getServerSideProps(context) {
         responseTvDetails.seasons
       )
     }).then((res) => {
-      console.log("res", res);
       tvSeasonDetails = res;
   });
 
