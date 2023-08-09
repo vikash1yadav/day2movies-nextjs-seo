@@ -17,7 +17,7 @@ export default function Home({
     <div>
       <Head>
         {/* Primary Meta Tags */}
-        <title>day2movies - watch movies and web series online</title>
+        <title>Unlock a World of Entertainment with Day2Movies</title>
         {/* <meta
           name="description"
           content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
