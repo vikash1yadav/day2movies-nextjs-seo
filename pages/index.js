@@ -4,6 +4,7 @@ import MoviesCollection from "../components/MoviesCollection";
 
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
+import SeoContentForHome from "../components/seo-content";
 
 export default function Home({
   popularMovies,
@@ -63,6 +64,8 @@ export default function Home({
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
         {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
+
+      <SeoContentForHome />
     </div>
   );
 }
