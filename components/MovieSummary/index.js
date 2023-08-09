@@ -8,6 +8,8 @@ import Image from "next/image";
 
 const MovieSummary = ({ result }) => {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
+  const VIDEO_BASE_URL = `https://databasegdriveplayer.xyz/player.php?tmdb=${result.id}`;
+  // https://databasegdriveplayer.xyz/player.php?tmdb=19404}]
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);
   const [posterLink, setposterLink] = useState(
@@ -28,33 +30,45 @@ const MovieSummary = ({ result }) => {
   return (
     <>
       <div className="flex w-full h-full">
-        <section className="h-full w-screen max-h-[70vh]">
-          <div className="flex flex-row h-[100%] md:h-[350px] sm:h-[350px] lg:h-[70vh]">
-            <img src={posterLink}
-              className="w-full hover:opacity-75 hover:bg-[#0F0F0F] object-cover"
-            />
-            <div className="absolute z-50  cursor-pointer left-[45%] top-[160px] sm:top-[200px] lg:left-[50%] lg:top-[40%] justify-center"
-              onClick={() => setShowPlayer(true)}
-            >
-              <button
-                className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-3 px-3 rounded-full"
+        <section className="h-full w-screen max-h-[75vh]">
+          {showPlayer ? 
+            <div className="h-[100%] md:h-[350px] sm:h-[350px] lg:h-[75vh]">
+              <iframe
+                src={VIDEO_BASE_URL}
+                frameborder="0" width="100%" height="100%"
+                className="w-full h-full object-cover"
+                allowfullscreen="allowfullscreen"
+                sandbox='allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation'
+              > </iframe>
+            </div> :
+            <div className="flex flex-row h-[100%] md:h-[350px] sm:h-[350px] lg:h-[75vh]">
+              <img src={posterLink}
+                className="w-full hover:opacity-75 hover:bg-[#0F0F0F] object-cover"
+              />
+              <div className="absolute z-50  cursor-pointer left-[45%] top-[160px] sm:top-[200px] lg:left-[50%] lg:top-[40%] justify-center"
+                onClick={() => setShowPlayer(true)}
               >
-                <img
-                  src="/images/play-icon-white.svg"
-                  alt=""
-                  className="h-6 md:h-8"
-                />
-                <span className="uppercase font-medium tracking-wide">
+                <button
+                  className="text-xs md:text-base bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] flex items-center justify-center py-3 px-3 rounded-full"
+                >
+                  <img
+                    src="/images/play-icon-white.svg"
+                    alt=""
+                    className="h-6 md:h-8"
+                  />
+                  <span className="uppercase font-medium tracking-wide">
 
-                </span>
-              </button>
+                  </span>
+                </button>
+              </div>
+            </div>   
+        }
+          {/* {showPlayer && (
+            <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50">
             </div>
-          </div>
-          {showPlayer && (
-            <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50"></div>
-          )}
+          )} */}
 
-          <div
+          {/* <div
             className={`absolute top-3 inset-x-[7%] md:inset-x-[13%] rounded overflow-hidden transition duration-1000 ${showPlayer ? "opacity-100 z-50" : "opacity-0"
               }`}
           >
@@ -77,7 +91,7 @@ const MovieSummary = ({ result }) => {
                 playing={showPlayer}
               />
             </div>
-          </div>
+          </div> */}
         </section>
       </div>
       <MovieInfo movie={result} />

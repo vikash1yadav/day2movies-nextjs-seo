@@ -17,10 +17,12 @@ export default function Home({
       <Head>
         {/* Primary Meta Tags */}
         <title>day2movies - watch movies and web series online</title>
-        <meta
+        {/* <meta
           name="description"
           content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
-        />
+        /> */}
+        <meta name="description" content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!" />
+        <meta name="keywords" content="movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -31,7 +33,7 @@ export default function Home({
         />
         <meta
           property="og:description"
-          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
+          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
         />
         <meta property="og:image" content="https://day2movies.com/" />
         <meta property="og:image:width" content="1200" />
@@ -46,7 +48,7 @@ export default function Home({
         />
         <meta
           property="twitter:description"
-          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
+          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
         />
         <meta property="twitter:image" content="https://day2movies.com/" />
 
