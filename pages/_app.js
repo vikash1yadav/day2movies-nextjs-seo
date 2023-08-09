@@ -19,6 +19,11 @@ function MyApp({ Component, pageProps }) {
       {/* <Header /> */}
       <AppHeader />
       <Component {...pageProps} />
+      <footer class="bg-gray-800 p-4">
+        <div class="container mx-auto text-center">
+          <p>&copy; 2023 Day2Movies. All rights reserved.</p>
+        </div>
+      </footer>
     </Provider>
   );
 }
