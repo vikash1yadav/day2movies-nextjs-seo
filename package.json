@@ -22,7 +22,8 @@
     "react-responsive-carousel": "^3.2.20",
     "react-slick": "^0.28.1",
     "tailwind-merge": "^1.2.1",
-    "tailwind-scrollbar-hide": "^1.0.3"
+    "tailwind-scrollbar-hide": "^1.0.3",
+    "video.js": "^8.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

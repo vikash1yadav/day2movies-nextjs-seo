@@ -93,6 +93,8 @@ export default class Flvplayer extends Component {
         const { className, style } = this.props;
         return (
             <video
+                autoplay
+                controls
                 className={className}
                 style={Object.assign({
                     width: '100%',
