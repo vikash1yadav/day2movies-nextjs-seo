@@ -17,7 +17,9 @@ function MovieThumbnail({ result }) {
   };
   return (
     <div
-      className="postItem"
+      // className="postItem"
+      // tailwind w-[190px] h-[330px]
+      className=" bg-[#282c34] text-[white] cursor-pointer m-[5px] p-[5px] rounded-[10px] hover:bg-[white] hover:text-[black]"
       // onClick={() => router.push(`/movie/${result.id}`)}
       onClick={() => router.push(`/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${checkTvOrMovieFromTitle(result.original_title, result.original_name) == "movie" ? reformatTitle(result.original_title) : reformatTitle(result.original_name)}/${result.id}`)}
     >
@@ -27,7 +29,9 @@ function MovieThumbnail({ result }) {
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <img
-          className="postImg hover:scale-105"
+          // postImg
+          // tailwind:w-[180px] h-[260px]
+          className="w-full h-full object-cover rounded-[7px] hover:scale-105"
           src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
           alt={result.title + ", day2movies , watch latest movie online for free on day2movies"}
           title={result.title || result.original_name + " day2movies"}

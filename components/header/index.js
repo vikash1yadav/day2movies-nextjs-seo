@@ -23,7 +23,7 @@ const AppHeader = () => {
       className="sticky bg-[#040714] top-0 bg-bgFull"
       style={{ zIndex: 99 }}
     >
-      <div className="sm:hidden w-full flex justify-between items-center relative">
+      <div className="md:hidden w-full flex justify-between items-center relative">
         <AppHeading />
         <button
           aria-label="expand menu"
@@ -54,7 +54,7 @@ const AppHeader = () => {
           </div>
         ) : null}
       </div>
-      <div className="hidden sm:flex w-full justify-between items-center">
+      <div className="hidden md:flex w-full justify-between items-center">
         <div className="flex items-center">
           <AppHeading />
           <nav>
