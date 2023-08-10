@@ -18,27 +18,33 @@ const bollywoodMovieUrl =
   `${MOVIEAPI}&with_original_language=${payload.with_original_language}&certification_country=${payload.certification_country}&release_date.gte=${payload['release_date.gte']}&release_date.lte=${payload['release_date.lte']}`
 import Home from "..";
 import moment from 'moment/moment';
+import { getDiscoverMovies } from '../../api/movie';
 
 export default Home;
 
 
 export async function getStaticProps() {
   // const session = await getSession(context);
-
-  const [
-    popularMoviesRes,
-    popularMoviesRes2,
-    popularMoviesRes3
-  ] = await Promise.all([
-    fetch(`${bollywoodMovieUrl}&page=1`),
-    fetch(`${bollywoodMovieUrl}&page=2`),
-    fetch(`${bollywoodMovieUrl}&page=3`),
-  ]);
-  const [Movies1, MovieList2, MovieList3] =
+  // const [
+  //   popularMoviesRes,
+  //   popularMoviesRes2,
+  //   popularMoviesRes3
+  // ] = await Promise.all([
+  //   getDiscoverMovies({ ...payload, page: 1 }),
+  //   getDiscoverMovies({ ...payload, page: 2 }),
+  //   getDiscoverMovies({ ...payload, page: 3 }),
+  //   // fetch(`${bollywoodMovieUrl}&page=1`),
+  //   // fetch(`${bollywoodMovieUrl}&page=2`),
+  //   // fetch(`${bollywoodMovieUrl}&page=3`),
+  // ]);
+  const [Movies1, MovieList2, MovieList3=[]] =
     await Promise.all([
-      popularMoviesRes.json(),
-      popularMoviesRes2.json(),
-      popularMoviesRes3.json(),
+      // popularMoviesRes.json(),
+      // popularMoviesRes2.json(),
+      // popularMoviesRes3.json(),
+      getDiscoverMovies({ ...payload, page: 1 }),
+      getDiscoverMovies({ ...payload, page: 2 }),
+      getDiscoverMovies({ ...payload, page: 3 }),
     ]);
 
   return {
