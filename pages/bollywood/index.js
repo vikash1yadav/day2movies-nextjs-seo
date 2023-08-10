@@ -3,20 +3,21 @@ const catType = {
   tendingAllByWeek: 'trending/all/week',
   discoverMovie: 'discover/movie',
   popularMovies: 'movie/popular',
+  nowPlaying:'movie/now_playing'
 }
-const MOVIEAPI = `https://api.themoviedb.org/3/${catType.popularMovies}?api_key=10682f9f7e873f9fefa9c47949aca414`;
+const MOVIEAPI = `https://api.themoviedb.org/3/${catType.discoverMovie}?api_key=10682f9f7e873f9fefa9c47949aca414`;
 const payload = {
   certification_country: "IN",
   with_original_language: "hi",
-  "release_date.gte": "2023-01-01",
-  "release_date.lte": "2023-08-16",
-
+  "release_date.gte": moment().subtract(1, 'year').startOf('year').format("YYYY-MM-DD") ||"2023-01-01",
+  "release_date.lte": moment().add(1, 'week').format("YYYY-MM-DD") || "2023-08-16",
 }
 
 
 const bollywoodMovieUrl =
   `${MOVIEAPI}&with_original_language=${payload.with_original_language}&certification_country=${payload.certification_country}&release_date.gte=${payload['release_date.gte']}&release_date.lte=${payload['release_date.lte']}`
 import Home from "..";
+import moment from 'moment/moment';
 
 export default Home;
 
