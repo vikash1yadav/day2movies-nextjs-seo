@@ -4,7 +4,7 @@ import MovieInfo from "./MovieInfo";
 
 const MovieSummary = ({ result }) => {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
-  const VIDEO_BASE_URL = `https://databasegdriveplayer.xyz/player.php?tmdb=${result.id}`;
+  const VIDEO_BASE_URL = `https://databasegdriveplayer.xyz/player.php?imdb=${result.imdb_id}&?tmdb=${result.id}`;
   // https://databasegdriveplayer.xyz/player.php?tmdb=19404}]
   const router = useRouter();
   const [showPlayer, setShowPlayer] = useState(false);

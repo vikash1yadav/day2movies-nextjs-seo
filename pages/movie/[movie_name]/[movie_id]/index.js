@@ -10,6 +10,7 @@ import MovieSeo from "../../../../components/SEO/movie-seo";
 // import MovieList2 from "../../../../components/movieList";
 import ErrorPage from "../../../404";
 
+
 const reformatTitle = (title) => {
   return title.replace(/ /g, "-").toLowerCase();
 };

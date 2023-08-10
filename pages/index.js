@@ -5,13 +5,14 @@ import MoviesCollection from "../components/MoviesCollection";
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
 import SeoContentForHome from "../components/seo-content";
-
+import MoviePageSeoContent from "../components/movie-seo-content";
 export default function Home({
   popularMovies,
   popularShows,
   top_ratedMovies,
   top_ratedShows,
-  trendingNow
+  trendingNow,
+  pageRoutes
 }) {
   return (
     <div>
@@ -64,14 +65,16 @@ export default function Home({
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
         {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
-
-      <SeoContentForHome />
+      {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}      
     </div>
   );
 }
 
-export async function getStaticProps() {
+//getServerSideProps getStaticProps
+export async function getServerSideProps(context) {
   // const session = await getSession(context);
+  console.log(context.resolvedUrl);
+  // const pagePropsData = context.json();
 
   const [
     trendingShowRes,
@@ -94,13 +97,14 @@ export async function getStaticProps() {
       `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
     ),
   ]);
-  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows] =
+  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows,] =
     await Promise.all([
       trendingShowRes.json(),
       popularMoviesRes.json(),
       popularShowsRes.json(),
       top_ratedMoviesRes.json(),
       top_ratedShowsRes.json(),
+      // context.json(),
     ]);
 
   return {
@@ -110,7 +114,8 @@ export async function getStaticProps() {
       popularShows: popularShows.results,
       top_ratedMovies: top_ratedMovies.results,
       top_ratedShows: top_ratedShows.results,
+      pageRoutes: context.resolvedUrl,
     },
-    revalidate: 100,
+    // revalidate: 100,
   };
 }

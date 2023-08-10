@@ -31,26 +31,6 @@ function SeoContentForHome() {
 
                 <p><strong>User Reviews and Ratings:</strong> Make informed decisions by checking out user reviews and ratings. This community-driven feedback adds a personal touch to your viewing choices.</p>
 
-                <h2>Ranking Day2Movies at the Top: SEO Strategies</h2>
-
-                <p><strong>Keyword Optimization:</strong> Identify relevant keywords such as "online streaming," "watch movies online," "web series platform," etc.</p>
-
-                <p><strong>Engaging Content:</strong> Craft engaging, informative, and valuable content that resonates with your target audience.</p>
-
-                <p><strong>Meta Tags and Descriptions:</strong> Optimize meta tags and descriptions with relevant keywords to enhance search engine visibility.</p>
-
-                <p><strong>Internal and External Links:</strong> Incorporate both internal and external links for better user experience and search engine ranking.</p>
-
-                <p><strong>Mobile Responsiveness:</strong> Ensure your website is mobile-responsive for an optimal user experience across devices.</p>
-
-                <p><strong>Page Loading Speed:</strong> Improve page loading speed for better user engagement and search engine ranking.</p>
-
-                <p><strong>Social Media Promotion:</strong> Leverage social media platforms to promote your article and website. Engage with your audience and encourage them to share your content.</p>
-
-                <h2>Conclusion</h2>
-
-                <p><strong>Day2Movies</strong> is your ticket to a world of cinematic delight, offering a plethora of movies and web series for your viewing pleasure.</p>
-
                 </div>
             </div>
         </div>
