@@ -71,10 +71,8 @@ export default function Home({
 }
 
 //getServerSideProps getStaticProps
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   // const session = await getSession(context);
-  console.log(context.resolvedUrl);
-  // const pagePropsData = context.json();
 
   const [
     trendingShowRes,
@@ -114,8 +112,8 @@ export async function getServerSideProps(context) {
       popularShows: popularShows.results,
       top_ratedMovies: top_ratedMovies.results,
       top_ratedShows: top_ratedShows.results,
-      pageRoutes: context.resolvedUrl,
+      pageRoutes: "/",
     },
-    // revalidate: 100,
+    revalidate: 100,
   };
 }
