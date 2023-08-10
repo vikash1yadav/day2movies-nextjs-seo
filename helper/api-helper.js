@@ -1,8 +1,8 @@
 import Const from "./constant";
 
 // Making the API call using fetch
-export default function requestTdbmApi(url, { params = {}, method, body }) {
-    const queryString = new URLSearchParams({ ...params,  }).toString();
+export default function requestTmdbApi(url, { params = {}, method, body }) {
+    const queryString = new URLSearchParams({ ...params, api_key: Const.TMDB.API_KEY }).toString();
     const queryParams = queryString ? `?${queryString}` : '';
     const  apiUrlWithQuery = `${Const.TMDB.API_BASE_URL}/${url}${queryParams}`;
 
@@ -31,23 +31,6 @@ export default function requestTdbmApi(url, { params = {}, method, body }) {
         return response.json(); // Parse the response body as JSON
     })
     .catch(error => {
-        console.error(apiUrlWithQuery, "key", Const.TMDB.API_KEY,'API Error:', error); // Handle any errors that occurred
+        console.error('API Error:', error); // Handle any errors that occurred
     });
 }
-
-
-// const fetch = require('node-fetch');
-
-// const url = 'https://api.themoviedb.org/3/account/10937035';
-// const options = {
-//     method: 'GET',
-//     headers: {
-//         accept: 'application/json',
-//         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMDY4MmY5ZjdlODczZjlmZWZhOWM0Nzk0OWFjYTQxNCIsInN1YiI6IjYxMWNhNGJjNmMxOWVhMDAyZDhkZDI5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aZvCmWx_NdBXWRrNAUnDvVqx1YXiO60sS7A_FLv0oGo'
-//     }
-// };
-
-// fetch(url, options)
-//     .then(res => res.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.error('error:' + err));

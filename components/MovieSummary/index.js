@@ -3,16 +3,18 @@ import MovieInfo from "./MovieInfo";
 import cx from "../../utils/class-names";
 import moment from "moment";
 import ReactPlayer from "react-player/lazy";
+import Const from "../../helper/constant";
+import { getMovieCast } from "../../api/movie";
 
-const MovieSummary = ({ result }) => {
+const MovieSummary = ({ result, movieCast }) => {
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
   const isUpcoming = moment(result.release_date).isAfter(moment());
-  const BASE_URL = "https://image.tmdb.org/t/p/original/";
+  const BASE_URL = `${Const.TMDB.IMAGE_BASE_URL}/original/`;
   const VIDEO_BASE_URL = isUpcoming
-    ? `https://www.youtube.com/watch?v=${result.videos?.results[index]?.key}`
-    : `https://databasegdriveplayer.xyz/player.php?imdb=${result.imdb_id}&?tmdb=${result.id}`;
+    ? `${Const.STREAM_SERVER.YOUTUBE_BASE_URL}?v=${result.videos?.results[index]?.key}`
+    : `${Const.STREAM_SERVER.GD_STREAM_BASE_URL}?imdb=${result.imdb_id}&?tmdb=${result.id}`;
   const [showPlayer, setShowPlayer] = useState(false);
   const [posterLink, setposterLink] = useState(
     `${BASE_URL}${result.poster_path}`
@@ -91,7 +93,7 @@ const MovieSummary = ({ result }) => {
           )}
         </section>
       </div>
-      <MovieInfo movie={result} />
+      <MovieInfo movie={result} movieCast={movieCast} />
     </>
   );
 };

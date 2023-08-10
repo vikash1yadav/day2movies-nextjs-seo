@@ -7,7 +7,6 @@ import MoviesCollection from "../../../components/MoviesCollection";
 function index() {
   const { query: { slug } } = useRouter();
   const [searchResult, setsearchResult] = useState([]);
-      console.log("resssss", searchResult);
   
   useEffect(() => {
     fetch(

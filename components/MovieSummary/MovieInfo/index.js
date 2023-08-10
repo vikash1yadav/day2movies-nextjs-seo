@@ -1,7 +1,9 @@
 import React from "react";
 import BasicsSection from "./BasicsSection/index";
+import constant from "../../../helper/constant";
+// import Image from "next/dist/client/image";
 
-const MovieInfo = ({  movie}) => {
+const MovieInfo = ({ movie, movieCast }) => {
   const [innerWidth, setinnerWidth] = React.useState();
   const [cast, setcast] = React.useState([]);
   React.useEffect(() => {
@@ -9,10 +11,9 @@ const MovieInfo = ({  movie}) => {
     setinnerWidth(screen.width);
     setcast(movie.cast);
   }, [movie]);
-  console.log("movie d", innerWidth,);
-
   return <>
-    <div className="flex flex-row flex-wrap justify-center my-12 m-2">
+    <div className="max-w-full flex flex-row flex-wrap justify-center my-12 m-2">
+      {/* flex-1 overflow-hidden */}
       <div className="h-[200px] w-[350px] lg:h-[400px]">
         <img className="rounded-lg h-full"
           src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
@@ -52,8 +53,25 @@ const MovieInfo = ({  movie}) => {
           {Math.floor(movie.runtime / 60)} hrs {movie.runtime % 60}m {" "}
         </BasicsSection>
         <h4 className="text-sm m-2 md:text-lg max-w-4xl">{movie.overview}</h4>
+        <h1>The Cast</h1>
+        <div className="max-w-[50vw] overflow-x-scroll">
+          <div className="flex overflow-x-auto overflow-y-auto space-x-2">
+            {movieCast.length > 0 && movieCast.map((item, index) => 
+              {
+              <div className="w-11 h-11 rounded-[50%] overflow-hidden px-3 cursor-pointer">
+                <img
+                  src={`${constant.TMDB.IMAGE_BASE_URL}/w185/${item.profile_path}`}
+                  className="w-11 h-11 object-cover aspect-[auto_44_/_44]"
+                      alt={item.name}
+                      lazy
+                />
+                {/* {item.name} */}
+                  </div>
+              }
+            )}
+          </div>
+        </div>
       </div>
-
     </div>
   </>
 };
