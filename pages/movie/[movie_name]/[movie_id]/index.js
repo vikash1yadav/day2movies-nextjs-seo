@@ -9,6 +9,8 @@ import MovieSummary from "../../../../components/MovieSummary";
 import MovieSeo from "../../../../components/SEO/movie-seo";
 // import MovieList2 from "../../../../components/movieList";
 import ErrorPage from "../../../404";
+import { getMovieCast } from "../../../../api/movie";
+
 
 const reformatTitle = (title) => {
   return title.replace(/ /g, "-").toLowerCase();
@@ -40,10 +42,11 @@ export async function getServerSideProps(context) {
   // const session = await getSession(context);
   // const { id } = context.query;
   const id = context.params.movie_id;
-
   const request = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
   ).then((response) => response.json());
+  
+  const movieCast = await getMovieCast({ movie_id: id });
 
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
@@ -54,12 +57,13 @@ export async function getServerSideProps(context) {
       // session,
       result: request,
       recommendedMovie: response,
+      movieCast
     },
     // revalidate: 10,
   };
 }
 
-function Movie({ result, recommendedMovie }) {
+function Movie({ result, recommendedMovie, movieCast }) {
   // const [session] = useSession();
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   const router = useRouter();
@@ -84,7 +88,7 @@ function Movie({ result, recommendedMovie }) {
   return (
     <>
       <MovieSeo movie={result} />
-      <MovieSummary result={result} />
+      <MovieSummary result={result} movieCast={movieCast?.cast} />
       {/* <MovieList2
         results={recommendedMovie.results}
         result={recommendedMovie.results}

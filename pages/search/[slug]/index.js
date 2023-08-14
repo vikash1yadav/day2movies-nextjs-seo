@@ -7,7 +7,6 @@ import MoviesCollection from "../../../components/MoviesCollection";
 function index() {
   const { query: { slug } } = useRouter();
   const [searchResult, setsearchResult] = useState([]);
-      console.log("resssss", searchResult);
   
   useEffect(() => {
     fetch(
@@ -20,7 +19,6 @@ function index() {
   }, [slug])
   
 
-  console.log("sssssss", slug);
   return (
     <div>
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">

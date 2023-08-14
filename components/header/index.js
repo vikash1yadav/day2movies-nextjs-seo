@@ -23,7 +23,7 @@ const AppHeader = () => {
       className="sticky bg-[#040714] top-0 bg-bgFull"
       style={{ zIndex: 99 }}
     >
-      <div className="sm:hidden w-full flex justify-between items-center relative">
+      <div className="md:hidden w-full flex justify-between items-center relative">
         <AppHeading />
         <button
           aria-label="expand menu"
@@ -48,17 +48,19 @@ const AppHeader = () => {
         {expandMenu ? (
           <div className="absolute bg-[#040714] top-14 w-full bg-bgFull flex flex-col pt-2 pb-6">
             <NavItem name="Movies" link="movie" />
+            <NavItem name="Bollywood" link="bollywood" />
             <NavItem name="Series" link="series" />
             <div className="mb-2"></div>
             <SearchBar setValue={setValue} value={value} />
           </div>
         ) : null}
       </div>
-      <div className="hidden sm:flex w-full justify-between items-center">
+      <div className="hidden md:flex w-full justify-between items-center">
         <div className="flex items-center">
           <AppHeading />
           <nav>
             <NavItem name="Movies" link="movie" />
+            <NavItem name="Bollywood" link="bollywood" />
             <NavItem name="Series" link="series"/>
           </nav>
         </div>

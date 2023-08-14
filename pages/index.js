@@ -4,23 +4,28 @@ import MoviesCollection from "../components/MoviesCollection";
 
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
-
+import SeoContentForHome from "../components/seo-content";
+import MoviePageSeoContent from "../components/movie-seo-content";
 export default function Home({
   popularMovies,
   popularShows,
   top_ratedMovies,
   top_ratedShows,
-  trendingNow
+  trendingNow,
+  pageRoutes
 }) {
   return (
     <div>
       <Head>
         {/* Primary Meta Tags */}
-        <title>day2movies - watch movies and web series online</title>
-        <meta
+        {/* google-site-verification=uO-3IvrE80JPUU2m1SNMVZR0e32ueVGO8eE43a5fPow */}
+        <title>Unlock a World of Entertainment with Day2Movies</title>
+        {/* <meta
           name="description"
           content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
-        />
+        /> */}
+        <meta name="description" content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!" />
+        <meta name="keywords" content="movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -31,7 +36,7 @@ export default function Home({
         />
         <meta
           property="og:description"
-          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
+          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
         />
         <meta property="og:image" content="https://day2movies.com/" />
         <meta property="og:image:width" content="1200" />
@@ -46,7 +51,7 @@ export default function Home({
         />
         <meta
           property="twitter:description"
-          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
+          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
         />
         <meta property="twitter:image" content="https://day2movies.com/" />
 
@@ -61,11 +66,13 @@ export default function Home({
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
         {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
+      {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}      
     </div>
   );
 }
 
-export async function getStaticProps() {
+//getServerSideProps getStaticProps
+export async function getStaticProps(context) {
   // const session = await getSession(context);
 
   const [
@@ -89,13 +96,14 @@ export async function getStaticProps() {
       `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
     ),
   ]);
-  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows] =
+  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows,] =
     await Promise.all([
       trendingShowRes.json(),
       popularMoviesRes.json(),
       popularShowsRes.json(),
       top_ratedMoviesRes.json(),
       top_ratedShowsRes.json(),
+      // context.json(),
     ]);
 
   return {
@@ -105,6 +113,7 @@ export async function getStaticProps() {
       popularShows: popularShows.results,
       top_ratedMovies: top_ratedMovies.results,
       top_ratedShows: top_ratedShows.results,
+      pageRoutes: "/",
     },
     revalidate: 100,
   };

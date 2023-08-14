@@ -21,7 +21,7 @@ const SearchBar = ({ setValue, value }) => {
   };
 
   return (
-    <div className="flex items-center w-full sm:w-auto">
+    <div className="flex items-center w-full md:w-auto">
       <form className="w-full" onSubmit={handleSubmit}>
         <input
           type="search"
