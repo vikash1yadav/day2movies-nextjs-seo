@@ -30,7 +30,10 @@ const generateSiteMap = (data) => {
     return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-      <loc>${Constant.DAY2MOVIE_URL}</loc>
+    <loc>${Constant.DAY2MOVIE_URL}</loc>
+      <loc>${Constant.DAY2MOVIE_URL}/bollywood</loc>
+      <loc>${Constant.DAY2MOVIE_URL}/series</loc>
+      <loc>${Constant.DAY2MOVIE_URL}/movies</loc>
     </url>
     ${posts.length>0 && posts.map(item => {
       return `<url>
