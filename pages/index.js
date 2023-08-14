@@ -18,6 +18,7 @@ export default function Home({
     <div>
       <Head>
         {/* Primary Meta Tags */}
+        {/* google-site-verification=uO-3IvrE80JPUU2m1SNMVZR0e32ueVGO8eE43a5fPow */}
         <title>Unlock a World of Entertainment with Day2Movies</title>
         {/* <meta
           name="description"
