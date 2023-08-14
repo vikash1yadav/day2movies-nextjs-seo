@@ -9,32 +9,56 @@ import MovieSummary from "../../../../components/MovieSummary";
 import MovieSeo from "../../../../components/SEO/movie-seo";
 // import MovieList2 from "../../../../components/movieList";
 import ErrorPage from "../../../404";
-import { getMovieCast } from "../../../../api/movie";
+// import { getMovieById } from "../../../../api/movie";
+import * as tmdbMovieApiList from "../../../../api/movie";
+// import slugify from "../../../../utils/slugify";
+// import tmdbPayload from "../../../../helper/tmdb-payload";
 
+// generateStaticParams getStaticPaths
+// export async function generateStaticParams() {
 
-const reformatTitle = (title) => {
-  return title.replace(/ /g, "-").toLowerCase();
-};
+//   const [Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], trendingNow = [], popularMovies = []] =
+//     await Promise.all([
+//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
+//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
+//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
+//       tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
+//       tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
+//       tmdbMovieApiList.getPopularMovies({ page: 1 })
+//     ]);
+//   const data = [
+//     ...trendingNow.results,
+//     // ...Movies1.results,
+//     // ...MovieList2.results,
+//     // ...MovieList3.results,
+//     // ...popularMovies.results,
+//     // ...top_ratedMovies.results,
+//   ]
 
-// export async function getStaticPaths() {
-//   const popularMoviesRes = await fetch(
-//     `https://api.themoviedb.org/3/movie/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-US&page=1`
-//   );
-//   const popularMovies = await popularMoviesRes.json();
-//   // const posts = await res.json();
-//   // console.log(popularMovies);
-//   // Get the paths we want to pre-render based on posts
-//   const paths = popularMovies.results.map((post) => ({
-//     params: {
-//       movie_name: post.original_title.replace(/ /g, "-").toLowerCase(),
-//       movie_id: post.id.toString(),
-//     },
-//   }));
-
+//   let paths = [];
+//   data.forEach((item) => {
+//     const slugifyTitle = slugify(item?.title || (item?.original_title || item?.original_name));
+//     const movie_id = item.id.toString();
+//       paths = [...paths,
+//         { params: { movie_name: slugifyTitle,  movie_id }, }
+//       ]
+//     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
+//   });
+// console.log("paths", paths);
 //   // We'll pre-render only these paths at build time.
 //   // { fallback: blocking } will server-render pages
 //   // on-demand if the path doesn't exist.
-//   return { paths, fallback: "blocking" };
+//   return paths;
+//   // { paths, fallback: "blocking" };
+// }
+
+// export async function getStaticPaths() {
+//   const posts = await getPosts(); // Fetch list of blog posts
+//   const paths = posts.map((post) => ({
+//     params: { slug: post.slug },
+//   }));
+
+//   return { paths, fallback: false }; // You can set fallback to true if you want to enable fallback rendering
 // }
 
 //getServerSideProps getStaticProps
@@ -42,15 +66,11 @@ export async function getServerSideProps(context) {
   // const session = await getSession(context);
   // const { id } = context.query;
   const id = context.params.movie_id;
-  const request = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}&language=en-US&append_to_response=videos`
-  ).then((response) => response.json());
+  const request = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
   
-  const movieCast = await getMovieCast({ movie_id: id });
+  const movieCast = await tmdbMovieApiList.getMovieCast({ movie_id: id });
 
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
-  ).then((res) => res.json());
+  const response = await tmdbMovieApiList.getMovieRecommendationsById({ movie_id: id });
 
   return {
     props: {

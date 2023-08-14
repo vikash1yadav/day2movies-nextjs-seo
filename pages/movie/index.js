@@ -2,6 +2,7 @@ import Home from "..";
 
 export default Home;
 
+//getServerSideProps getStaticProps
 export async function getStaticProps() {
     // const session = await getSession(context);
 

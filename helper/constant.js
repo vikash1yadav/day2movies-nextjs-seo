@@ -19,7 +19,8 @@ export default {
         DISCOVER_MOVIE: 'discover/movie',
         popularMovies: 'movie/popular',
         nowPlaying: 'movie/now_playing',
-        MOVIE: "movie/"
+        topRated:"movie/top_rated",
+        MOVIE: "movie"
     },
     DATE_FORMAT: {
         API_DATE:"YYYY-MM-DD"
