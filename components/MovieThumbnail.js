@@ -42,7 +42,7 @@ function MovieThumbnail({ result }) {
           // tailwind:w-[180px] h-[260px]
           className="w-full h-full object-cover rounded-[7px] hover:scale-105"
           src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
-          alt={result.title + ", day2movies , watch latest movie online for free on day2movies"}
+          alt={result.title + ", day2movies"}
           title={result.title || result.original_name + " day2movies"}
         />
 

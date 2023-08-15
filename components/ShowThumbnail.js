@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import slugify from "../utils/slugify";
 import Link from 'next/link';
+import constant from "../helper/constant";
 
 function ShowThumbnail({ result }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
@@ -31,7 +32,8 @@ function ShowThumbnail({ result }) {
           `${BASE_URL}${result.poster_path}`
         }
         width={190}
-        height={330}
+          height={330}
+          alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
             objectFit="cover"
             // layout="fill"
           className="rounded-lg  aspect-[4/3]"
