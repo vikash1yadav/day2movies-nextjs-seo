@@ -33,11 +33,6 @@ function Show({ result, recommendedShow, tvSeasonDetails }) {
     <>
       <div className="relative">
         <MovieSeo movie={result} />
-      {/* <Head>
-        <title>{result.title || result.original_name}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head> */}
-      {/* <Header /> */}
         <section
           className="relative"
         >
