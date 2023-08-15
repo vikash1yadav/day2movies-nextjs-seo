@@ -1,4 +1,4 @@
-function slugify(text) {
+function slugify(text="") {
     return text
         .toString() // Make sure it's a string
         .toLowerCase() // Convert to lowercase

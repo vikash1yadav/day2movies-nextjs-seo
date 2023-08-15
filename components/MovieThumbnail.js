@@ -11,7 +11,7 @@ function MovieThumbnail({ result }) {
       return "series";
     }
   };
-  const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${checkTvOrMovieFromTitle(result.original_title, result.original_name) == "movie" ? slugify(result.original_title) : slugify(result.original_name)}/${result.id}`;
+  const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(result?.title || (result?.original_title || result?.original_name))}/${result.id}`;
   return (
     <div
       // className="postItem"
@@ -20,7 +20,18 @@ function MovieThumbnail({ result }) {
       // onClick={() => router.push(`/movie/${result.id}`)}
       // onClick={() => router.push()}
     >
-      <Link href={slugifyUrl}>
+      <Link
+        as={slugifyUrl}
+        href={{
+          pathname: '/movie/[movie_name]/[movie_id]',
+          query: {
+            movie_name: slugify(result?.title || (result?.original_title || result?.original_name)),
+            movie_id: result.id
+          },
+        }}
+        replace passHref legacyBehavior
+        // href={slugifyUrl}
+      >
       <div
         className="link"
         to={`/movie/${result.id}`}
