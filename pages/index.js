@@ -24,7 +24,11 @@ export default function Home({
           name="description"
           content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
         /> */}
-        <meta name="description" content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!" />
+        {/* Discover the ultimate online destination for movies and web series at Day2Movies: Your ultimate hub for films and series, Enjoy seamless streaming and stay updated with the latest releases. */}
+        {/* Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.*/}
+        <meta name="description"
+          content="Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases."
+        />
         <meta name="keywords" content="movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online" />
 
         {/* Open Graph / Facebook */}
