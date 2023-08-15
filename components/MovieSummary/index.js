@@ -84,7 +84,7 @@ const MovieSummary = ({ result, movieCast }) => {
                 <div className=" bg-black/30 text-[#f9f9f9] border border-[#f9f9f9] p-3 rounded-full">
                   <img
                     src="/images/play-icon-white.svg"
-                    alt=""
+                    alt={Const.ATTRIBUTES.IMG}
                     className="h-6 md:h-8"
                   />
                 </div>

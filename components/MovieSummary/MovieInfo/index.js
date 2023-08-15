@@ -26,7 +26,7 @@ const MovieInfo = ({ movie, movieCast }) => {
             root:"text-1xl sm:text-2xl md:text-3xl ",
             content:"text-1xl sm:text-1xl md:text-2xl font-semibold"
         }}
-        >  {movie.title || movie.original_name} 
+        > Watch online {movie.title || movie.original_name} 
         </BasicsSection>
         <BasicsSection movie={movie} heading="Genre"
           classNames={{
@@ -53,7 +53,7 @@ const MovieInfo = ({ movie, movieCast }) => {
           {Math.floor(movie.runtime / 60)} hrs {movie.runtime % 60}m {" "}
         </BasicsSection>
         <h4 className="text-sm m-2 md:text-lg max-w-4xl">{movie.overview}</h4>
-        <h1>The Cast</h1>
+        <h2>The Cast</h2>
         <div className="max-w-[50vw] overflow-x-scroll">
           <div className="flex overflow-x-auto overflow-y-auto space-x-2">
             {movieCast.length > 0 && movieCast.map((item, index) => 

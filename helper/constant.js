@@ -25,5 +25,8 @@ export default {
     DATE_FORMAT: {
         API_DATE:"YYYY-MM-DD"
     },
+    ATTRIBUTES: {
+      IMG:"day2movies"  
+    }
 
 }

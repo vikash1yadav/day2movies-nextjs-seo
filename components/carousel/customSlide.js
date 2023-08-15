@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Const from "../../helper/constant";
 
 // //import "./style.css";
 
@@ -32,7 +33,7 @@ export default function CustomSlide(props) {
         <div className="carousel-img">
           <img
             src={`https://image.tmdb.org/t/p/w1280${backdrop}`}
-            alt=""
+            alt={Const.ATTRIBUTES.IMG}
             className="d-inline"
             // loading="lazy"
           />
