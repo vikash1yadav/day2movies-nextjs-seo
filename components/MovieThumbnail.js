@@ -13,17 +13,17 @@ function MovieThumbnail({ result }) {
   };
   const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(result?.title || (result?.original_title || result?.original_name))}/${result.id}`;
   return (
-    <Link
+    <a
       as={slugifyUrl}
-      href={{
-        pathname: '/movie/[movie_name]/[movie_id]',
-        query: {
-          movie_name: slugify(result?.title || (result?.original_title || result?.original_name)),
-          movie_id: result.id
-        },
-      }}
+      // href={{
+      //   pathname: '/movie/[movie_name]/[movie_id]',
+      //   query: {
+      //     movie_name: slugify(result?.title || (result?.original_title || result?.original_name)),
+      //     movie_id: result.id
+      //   },
+      // }}
       replace passHref legacyBehavior
-    // href={slugifyUrl}
+     href={slugifyUrl}
     >
       <div
         // className="postItem"
@@ -57,7 +57,7 @@ function MovieThumbnail({ result }) {
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
 
