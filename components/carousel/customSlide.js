@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Const from "../../helper/constant";
+import slugify from "../../utils/slugify";
 
 // //import "./style.css";
 
@@ -16,9 +17,9 @@ export default function CustomSlide(props) {
   };
 
   const reformatTitle = (title) => {
-    return title.replace(/ /g, "-").toLowerCase();
+    return slugify(title) ||title.replace(/ /g, "-").toLowerCase();
   };
-  const getCurrentUrl = `/${checkTvOrMovieFromTitle(original_title, original_name)}/${checkTvOrMovieFromTitle(original_title, original_name) == "movie" ? reformatTitle(original_title) : reformatTitle(original_name)}/${id}`;
+  const getCurrentUrl = `/${checkTvOrMovieFromTitle(original_title, original_name)}/${checkTvOrMovieFromTitle(original_title, original_name) == "movie" ? reformatTitle(title) : reformatTitle(props?.name)}/${id}`;
   return (
     <div {...otherprops}>
       <div className="mx-1 mx-lg-1 mx-xl-2 cursor-pointer carousel-container"

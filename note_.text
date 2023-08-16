@@ -28,51 +28,11 @@ with_release_type: 3
 with_runtime.gte: 0
 with_runtime.lte: 400
 
+ {/* <meta
+          name="description"
+          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
+        /> */}
+        {/* Discover the ultimate online destination for movies and web series at Day2Movies: Your ultimate hub for films and series, Enjoy seamless streaming and stay updated with the latest releases. */}
+        {/* Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.*/}
+       
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-air_date.gte: 
-air_date.lte: 
-certification: 
-certification_country: IN
-debug: 
-first_air_date.gte: 
-first_air_date.lte: 
-page: 2
-primary_release_date.gte: 
-primary_release_date.lte: 
-region: IN
-release_date.gte: 2023-01-01
-release_date.lte: 2023-08-16
-show_me: 0
-sort_by: popularity.desc
-vote_average.gte: 0
-vote_average.lte: 10
-vote_count.gte: 0
-watch_region: IN
-with_genres: 
-with_keywords: 
-with_networks: 
-with_origin_country: 
-with_original_language: hi
-with_watch_monetization_types: 
-with_watch_providers: 
-with_release_type: 3
-with_runtime.gte: 0
-with_runtime.lte: 400

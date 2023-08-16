@@ -20,12 +20,6 @@ export default function Home({
         {/* Primary Meta Tags */}
         {/* google-site-verification=uO-3IvrE80JPUU2m1SNMVZR0e32ueVGO8eE43a5fPow */}
         <title>Unlock a World of Entertainment with Day2Movies</title>
-        {/* <meta
-          name="description"
-          content="day2movies watch movies & series online for free, day2movies is free streaming website, download movies and webseries in high quality for free on day2movies"
-        /> */}
-        {/* Discover the ultimate online destination for movies and web series at Day2Movies: Your ultimate hub for films and series, Enjoy seamless streaming and stay updated with the latest releases. */}
-        {/* Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.*/}
         <meta name="description"
           content="Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases."
         />
@@ -33,6 +27,8 @@ export default function Home({
         {/* Bing HTML Meta Tag */}
         <meta name="msvalidate.01" content="4329EF281E3B1FCF5290B8C366AC2E31" />
         <meta http-equiv="content-language" content="en-in"></meta>
+        {/* Google meta tag */}
+        <meta name="google-site-verification" content="xaXydptdJWl4igFuD0gEiW_PmLa6FDorS0O2UoQzFBo" />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://day2movies.com/" />
