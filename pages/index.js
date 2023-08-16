@@ -30,7 +30,8 @@ export default function Home({
           content="Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases."
         />
         <meta name="keywords" content="movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online" />
-
+        {/* Bing HTML Meta Tag */}
+        <meta name="msvalidate.01" content="4329EF281E3B1FCF5290B8C366AC2E31" />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://day2movies.com/" />
