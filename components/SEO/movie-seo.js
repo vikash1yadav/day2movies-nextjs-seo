@@ -5,6 +5,8 @@ function MovieSeo({ movie}) {
   return (
       <Head>
           <title>{`${movie.title || movie.original_name} - day2movies`}</title>
+          <meta name="msvalidate.01" content="4329EF281E3B1FCF5290B8C366AC2E31" />
+          <meta http-equiv="content-language" content="en-in"></meta>
           <meta
               name="description"
               content={`${movie.title || movie.original_name}, ${movie.overview}`}
