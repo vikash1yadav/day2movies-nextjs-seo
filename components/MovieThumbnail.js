@@ -13,51 +13,51 @@ function MovieThumbnail({ result }) {
   };
   const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(result?.title || (result?.original_title || result?.original_name))}/${result.id}`;
   return (
-    <div
-      // className="postItem"
-      // tailwind w-[190px] h-[330px]
-      className=" bg-[#282c34] text-[white] cursor-pointer m-[5px] p-[5px] rounded-[10px] hover:bg-[white] hover:text-[black]"
+    <Link
+      as={slugifyUrl}
+      href={{
+        pathname: '/movie/[movie_name]/[movie_id]',
+        query: {
+          movie_name: slugify(result?.title || (result?.original_title || result?.original_name)),
+          movie_id: result.id
+        },
+      }}
+      replace passHref legacyBehavior
+    // href={slugifyUrl}
+    >
+      <div
+        // className="postItem"
+        // tailwind w-[190px] h-[330px]
+        className="flex flex-col bg-[#282c34] text-[white] cursor-pointer m-[5px] p-[5px] rounded-[10px] hover:bg-[white] hover:text-[black]"
       // onClick={() => router.push(`/movie/${result.id}`)}
       // onClick={() => router.push()}
-    >
-      <Link
-        as={slugifyUrl}
-        href={{
-          pathname: '/movie/[movie_name]/[movie_id]',
-          query: {
-            movie_name: slugify(result?.title || (result?.original_title || result?.original_name)),
-            movie_id: result.id
-          },
-        }}
-        replace passHref legacyBehavior
-        // href={slugifyUrl}
       >
-      <div
+        <div
           className="link no-underline text-inherit"
-        to={`/movie/${result.id}`}
-      >
-        <img
-          // postImg
-          // tailwind:w-[180px] h-[260px]
-          className="w-full h-full object-cover rounded-[7px] hover:scale-105"
-          src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
-          alt={result.title + ", day2movies"}
-          title={result.title || result.original_name + " day2movies"}
-        />
-
-        <div className="postInfo">
+          to={`/movie/${result.id}`}
+        >
+          <img
+            // postImg
+            // tailwind:w-[180px] min-h-[260px]
+            className="w-full h-full my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
+            src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
+            alt={result.title + ", day2movies"}
+            title={result.title || result.original_name + " day2movies"}
+            loading="lazy"
+          />
+        </div>
+        <div className="postInfo mt-auto">
           <span className="postTitle">
             {result.title || result.original_name}
           </span>
           <div className="movieDetails">
             <p className="movieDate">{result.release_date}</p>
             <p className="type">{result.vote_average}</p>
-            <p className="hidden">{result.overview}</p>
+            {/* <p className="hidden">{result.overview}</p> */}
           </div>
         </div>
-        </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

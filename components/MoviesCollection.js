@@ -8,8 +8,6 @@ function MoviesCollection({ results, title }) {
         // className="flex flex-row flex-wrap"
         className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(190px,1fr))]"
       >
-        {/* post */}
-        {/* flex flex-row flex-wrap */}
         {results.length>0 && results.map((result) => (
           <MovieThumbnail key={result.id} result={result} />
         ))}

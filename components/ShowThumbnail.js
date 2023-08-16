@@ -34,6 +34,7 @@ function ShowThumbnail({ result }) {
         width={190}
           height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
+          title={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
             objectFit="cover"
             // layout="fill"
           className="rounded-lg  aspect-[4/3]"
