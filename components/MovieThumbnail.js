@@ -33,9 +33,8 @@ function MovieThumbnail({ result }) {
         // href={slugifyUrl}
       >
       <div
-        className="link"
+          className="link no-underline text-inherit"
         to={`/movie/${result.id}`}
-        style={{ textDecoration: "none", color: "inherit" }}
       >
         <img
           // postImg
@@ -53,7 +52,7 @@ function MovieThumbnail({ result }) {
           <div className="movieDetails">
             <p className="movieDate">{result.release_date}</p>
             <p className="type">{result.vote_average}</p>
-            <p style={{ display: "none" }}>{result.overview}</p>
+            <p className="hidden">{result.overview}</p>
           </div>
         </div>
         </div>

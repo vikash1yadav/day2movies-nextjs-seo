@@ -27,7 +27,7 @@ function ListItem({ result }) {
                         {/* md:inset-y-1 */}
                         {`S${result.season_number}  E${result.episode_number} . ${result.air_date}`}
                     </h2>
-                    <p style={{ display: 'none' }}>{result.overview}</p>
+                    <p className="hidden">{result.overview}</p>
                 </div>
             </div>
         </Link>);

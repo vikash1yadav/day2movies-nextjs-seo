@@ -118,8 +118,8 @@ function Show({ result, recommendedShow, tvSeasonDetails }) {
             <ReactPlayer
               url={`https://www.youtube.com/watch?v=${result.videos?.results[index]?.key}`}
               width="100%"
-              height="100%"
-              style={{ position: "absolute", top: "0", left: "0" }}
+                height="100%"
+                className="absolute top-0 left-0"
               controls={true}
               playing={showPlayer}
             />

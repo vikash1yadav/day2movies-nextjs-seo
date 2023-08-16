@@ -29,9 +29,8 @@ const SearchBar = ({ setValue, value }) => {
           value={value}
           onChange={handleInput}
           // aria-label="search"
-          className="transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none"
+          className="text-[black] p-[5px] transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none"
           // transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent bg-bgFull border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none
-          style={{color:"black", padding:"5px"}}
         />
       </form>
       <a

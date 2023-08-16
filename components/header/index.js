@@ -20,8 +20,7 @@ const AppHeader = () => {
 
   return (
     <header
-      className="sticky bg-[#040714] top-0 bg-bgFull"
-      style={{ zIndex: 99 }}
+      className="sticky bg-[#040714] top-0 bg-bgFull z-[99]"
     >
       <div className="md:hidden w-full flex justify-between items-center relative">
         <AppHeading />

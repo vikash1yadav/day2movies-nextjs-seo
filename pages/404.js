@@ -4,17 +4,11 @@ import Link from "next/link";
 
 export default function ErrorPage() {
   return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h1 style={{ fontSize: 64 }}>404</h1>
+    <div className=" flex items-center flex-col">
+      <h1 className="text-[64]">404</h1>
         <h2>The content you are looking for is not available at the moment</h2>
         <Link href="/">
-          <h3 style={{ cursor: "pointer", textDecoration: "underline" }}>
+        <h3 className="cursor-pointer underline">
             Continue Watching..
           </h3>
         </Link>
