@@ -21,7 +21,7 @@ function ShowThumbnail({ result }) {
   return (
     <>
     <div
-        className={`flex m-1 
+        className={`flex m-1 min-h-[260px] h-[330px] 
                rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px]
         border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl
          transform hover:scale-105 transition duration-300`}
@@ -30,14 +30,14 @@ function ShowThumbnail({ result }) {
       <Image
         src={
           `${BASE_URL}${ result.poster_path}`}
-        width={190}
-        height={330}
+        // width={190}
+        // height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
           title={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
-            // objectFit="cover"
-            // layout="fill"
+            objectFit="cover"
+            layout="fill"
           // className="rounded-lg  aspect-[4/3]"
-          className="my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
+          className="my-auto w-full  min-h-[260px] rounded-[7px] hover:scale-105"
           />
           <div
             className="absolute bottom-2  md:inset-y-auto md:bottom-2 background-blur inset-x-1 md:inset-x-2 space-y-4 z-50"
