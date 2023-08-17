@@ -34,8 +34,6 @@ const generateSiteMap = (data) => {
        </url>`;
       })
     }
-    // console.log(slugify("Dilwale Dulhania Le Jayenge" || "दिलवाले दुल्हनिया ले ज"))
-    // 
     return `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" >
     <url>

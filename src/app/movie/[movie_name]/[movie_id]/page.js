@@ -89,7 +89,6 @@ export async function generateMetadata(context) {
 }
 
 async function Movie(context) {
-  console.log("context", context);
 
   const data = await getData(context);
   const { result, recommendedMovie, movieCast }= data.props;
