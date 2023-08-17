@@ -14,7 +14,7 @@ export default function Home({
   trendingNow,
   pageRoutes
 }) {
-
+console.log("trendingNow", trendingNow);
   return (
     <div>
       <Head>
@@ -66,7 +66,7 @@ export default function Home({
         {popularMovies &&<MoviesCollection results={popularMovies} title="Popular Movies" />}
         {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" />}
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
-        {/* {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />} */}
+        {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
       {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}      
     </div>

@@ -1,16 +1,14 @@
+import { getTrendingAllByWeek } from "@/api/movie";
 import Home from "..";
-
-export default Home;
-
-export async function getStaticProps() {
+export async function getData() {
     // const session = await getSession(context);
 
     const [
-        trendingShowRes,
+        trendingNow,
         popularShowsRes,
         top_ratedShowsRes,
     ] = await Promise.all([
-        fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=abb29bea88e171807e8533520836bfce`),
+        getTrendingAllByWeek(),
         fetch(
             `https://api.themoviedb.org/3/tv/popular?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
         ),
@@ -18,9 +16,8 @@ export async function getStaticProps() {
             `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
         ),
     ]);
-    const [trendingNow, popularShows, top_ratedShows] =
+    const [ popularShows, top_ratedShows] =
         await Promise.all([
-            trendingShowRes.json(),
             popularShowsRes.json(),
             top_ratedShowsRes.json(),
         ]);
@@ -34,3 +31,9 @@ export async function getStaticProps() {
         revalidate: 100,
     };
 }
+
+
+export default async function(){
+    const data= await getData();
+    return <Home {...data?.props}/>;
+};

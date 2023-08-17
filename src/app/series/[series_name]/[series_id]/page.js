@@ -1,6 +1,7 @@
+'use client'
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 // import Header from "../../components/Header";
 // import Hero from "../../components/Hero";
@@ -149,9 +150,7 @@ function Show({ result, recommendedShow, tvSeasonDetails }) {
   );
 }
 
-export default Show;
-
-export async function getServerSideProps(context) {
+export async function getData(context) {
   const { series_id } = context.query;
   const apiKey = process.env.API_KEY;
 
@@ -199,3 +198,9 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+
+export default async function(){
+  const data= await getData();
+  return <Show  {...data?.props}/>
+};

@@ -39,3 +39,10 @@ export const getMovieCast = (data) => {
         params: payload,
     })
 }
+
+export const getMovieSearchResult = (data) => {
+    return requestTmdbApi("search/movie", {
+        method: "GET",
+        params: data,
+    })
+}

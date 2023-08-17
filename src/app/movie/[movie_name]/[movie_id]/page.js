@@ -4,7 +4,7 @@ import MoviesCollection from "../../../../components/MoviesCollection";
 import MovieSummary from "../../../../components/MovieSummary";
 import ErrorPage from "../../../404";
 import * as tmdbMovieApiList from "../../../../api/movie";
-import MovieSeo from "../../../../../components/SEO/movie-seo";
+import MovieSeo from "../../../../components/SEO/movie-seo";
 import tmdbPayload from "../../../../helper/tmdb-payload";
 import slugify from "../../../../../utils/slugify";
 
