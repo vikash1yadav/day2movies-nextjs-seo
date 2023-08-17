@@ -14,7 +14,6 @@ export default function Home({
   trendingNow,
   pageRoutes
 }) {
-console.log("trendingNow", trendingNow);
   return (
     <div>
       <Head>

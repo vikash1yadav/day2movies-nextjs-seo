@@ -52,7 +52,6 @@ export async function getData(context) {
 
 
 export default async function(context){
-  console.log("context", context);
   const data = await getData(context).then((res)=> res);
   return <Show  {...data?.props}/>
 };
