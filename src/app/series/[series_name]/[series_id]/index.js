@@ -9,7 +9,6 @@ import ShowsCollection from "../../../../components/ShowsCollection";
 import ErrorPage from "../../../404";
 import MovieSeo from "../../../../components/SEO/movie-seo";
 import MovieList2 from "../../../../components/movieList";
-import constant from "@/helper/constant";
 
 import ReactPlayer from "react-player/lazy";
 // import { useState } from "react";
@@ -41,14 +40,14 @@ function Show({ result, recommendedShow, tvSeasonDetails }) {
           className="relative"
         >
           <div className="relative min-h-[calc(100vh-72px)] " >
-          <Image
+          {/* <img
             src={
               `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
               `${BASE_URL}${result.poster_path}`
             }
             layout="fill"
             objectFit="cover"
-          />
+          /> */}
         </div>
           <div
             className="absolute bottom-10  md:inset-y-auto md:bottom-0 inset-x-4 md:inset-x-12 space-y-6 z-50"

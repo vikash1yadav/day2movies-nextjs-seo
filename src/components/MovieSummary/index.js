@@ -19,15 +19,15 @@ const MovieSummary = ({ result, movieCast }) => {
   // const [posterLink, setposterLink] = useState(
   //   `${BASE_URL}${result.poster_path}`
   // );
-  // const [iframeLoading, setIframeLoading] = useState(true);
+  const [iframeLoading, setIframeLoading] = useState(true);
 
   // let showPlayer=false;
   let posterLink=`${BASE_URL}${result.backdrop_path || result.poster_path}` ||
   `${BASE_URL}${result.poster_path}`;
-  let iframeLoading = true;
+  // let iframeLoading = true;
 
   const handleIframeLoad = () => {
-    iframeLoading= false;
+    setIframeLoading(false);
   };
 
   // useEffect(() => {
@@ -47,14 +47,14 @@ const MovieSummary = ({ result, movieCast }) => {
           {showPlayer ? (
             <div className="h-full w-full flex justify-center items-center">
               {isUpcoming ? (
-                <></>
-                // <ReactPlayer
-                //   url={VIDEO_BASE_URL}
-                //   controls={true}
-                //   // playing={showPlayer}
-                //   width="100%"
-                //   height="100%"
-                // />
+                // <></>
+                <ReactPlayer
+                  url={VIDEO_BASE_URL}
+                  controls={true}
+                  // playing={showPlayer}
+                  width="100%"
+                  height="100%"
+                />
               ) : (
                 <>
                   <iframe

@@ -20,7 +20,10 @@ export default {
         popularMovies: 'movie/popular',
         nowPlaying: 'movie/now_playing',
         topRated:"movie/top_rated",
-        MOVIE: "movie"
+        MOVIE: "movie",
+        TV:"tv",
+        POPULAR_SHOW:"tv/popular",
+        TOP_RATED_SHOW: "tv/top_rated"
     },
     DATE_FORMAT: {
         API_DATE:"YYYY-MM-DD"

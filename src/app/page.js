@@ -1,40 +1,24 @@
 import Image from 'next/image'
 import MainPage from "./index";
+import { getPopularMovies, getTopRatedMovies, getTrendingAllByWeek } from '@/api/movie';
+import { getPopularShow, getTopRatedShow } from '@/api/tv-series';
+import tmdbPayload from '@/helper/tmdb-payload';
 
 export async function getData(context) {
   // const session = await getSession(context);
 
+  // BOLLYWOOD_RECENT_YEAR_PAYLOAD
   const [
-    trendingShowRes,
-    popularMoviesRes,
-    popularShowsRes,
-    top_ratedMoviesRes,
-    top_ratedShowsRes,
+    trendingNow,popularMovies,
+    popularShows, top_ratedMovies,
+    top_ratedShows,
   ] = await Promise.all([
-    fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=abb29bea88e171807e8533520836bfce`),
-    fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-INS&page=1`
-    ),
-    fetch(
-      `https://api.themoviedb.org/3/tv/popular?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-INS&page=1`
-    ),
-    fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-IN&page=1`
-    ),
-    fetch(
-      `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&language=en-INS&page=1`
-    ),
+    getTrendingAllByWeek({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country}),
+    getPopularMovies(),
+    getPopularShow(),
+    getTopRatedMovies(),
+    getTopRatedShow(),
   ]);
-  const [trendingNow, popularMovies, popularShows, top_ratedMovies, top_ratedShows,] =
-    await Promise.all([
-      trendingShowRes.json(),
-      popularMoviesRes.json(),
-      popularShowsRes.json(),
-      top_ratedMoviesRes.json(),
-      top_ratedShowsRes.json(),
-      // context.json(),
-    ]);
-
   return {
     props: {
       trendingNow: trendingNow.results,

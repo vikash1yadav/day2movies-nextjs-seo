@@ -7,3 +7,13 @@ export const getTvSeriesSearchResult = (data) => {
         params: data,
     })
 }
+
+export const getPopularShow = (data) => requestTmdbApi(`${Const.TMDB_CAT_BASED_URL.POPULAR_SHOW}`, {
+    method: "GET",
+    params: data,
+});
+
+export const getTopRatedShow = (data) => requestTmdbApi(`${Const.TMDB_CAT_BASED_URL.TOP_RATED_SHOW}`, {
+    method: "GET",
+    params: data,
+});

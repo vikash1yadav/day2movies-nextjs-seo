@@ -34,10 +34,10 @@ function ShowThumbnail({ result }) {
         height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
           title={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
-            objectFit="cover"
+            // objectFit="cover"
             // layout="fill"
           // className="rounded-lg  aspect-[4/3]"
-          className="w-full h-full my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
+          className="my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
           />
           <div
             className="absolute bottom-2  md:inset-y-auto md:bottom-2 background-blur inset-x-1 md:inset-x-2 space-y-4 z-50"

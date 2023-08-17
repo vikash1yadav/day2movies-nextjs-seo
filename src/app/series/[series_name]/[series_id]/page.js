@@ -1,4 +1,5 @@
 import Show from ".";
+import constant from "@/helper/constant";
 
 export async function getData(context) {
   const { series_id } = context.params;
