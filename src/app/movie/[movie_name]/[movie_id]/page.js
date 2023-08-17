@@ -44,12 +44,8 @@ export async function generateStaticParams() {
       ]
     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
   });
-console.log("paths", paths);
-  // We'll pre-render only these paths at build time.
-  // { fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
+ 
   return paths;
-  // { paths, fallback: "blocking" };
 }
 
 
