@@ -15,7 +15,8 @@ export async function getData(context) {
   ] = await Promise.all([
     getTrendingAllByWeek({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country}),
     getPopularMovies(),
-    getPopularShow(),
+    getPopularShow({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD}),
+    
     getTopRatedMovies(),
     getTopRatedShow(),
   ]);
