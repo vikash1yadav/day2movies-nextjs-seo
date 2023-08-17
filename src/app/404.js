@@ -7,7 +7,7 @@ export default function ErrorPage() {
     <div className=" flex items-center flex-col">
       <h1 className="text-[64]">404</h1>
         <h2>The content you are looking for is not available at the moment</h2>
-        <Link href="/">
+        <Link href="/" legacyBehavior>
         <h3 className="cursor-pointer underline">
             Continue Watching..
           </h3>

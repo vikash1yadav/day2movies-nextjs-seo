@@ -46,8 +46,8 @@ function MovieThumbnail({ result }) {
             loading="lazy"
           />
         </div>
-        <div className="postInfo mt-auto">
-          <span className="postTitle">
+        <div className="postInfo flex flex-col mt-auto">
+          <span className="postTitle text-base overflow-hidden overflow-hidden text-ellipsis my-[3px]">
             {result.title || result.original_name}
           </span>
           <div className="movieDetails">

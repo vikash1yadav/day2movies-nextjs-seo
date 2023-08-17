@@ -11,55 +11,47 @@ import ErrorPage from "../../../404";
 // import { getMovieById } from "../../../../api/movie";
 import * as tmdbMovieApiList from "../../../../api/movie";
 import MovieSeo from "../../../../../components/SEO/movie-seo";
-// import slugify from "../../../../utils/slugify";
-// import tmdbPayload from "../../../../helper/tmdb-payload";
+import tmdbPayload from "../../../../helper/tmdb-payload";
+import slugify from "../../../../../utils/slugify";
 
 // generateStaticParams getStaticPaths
-// export async function generateStaticParams() {
+export async function generateStaticParams() {
 
-//   const [Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], trendingNow = [], popularMovies = []] =
-//     await Promise.all([
-//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
-//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
-//       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
-//       tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
-//       tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
-//       tmdbMovieApiList.getPopularMovies({ page: 1 })
-//     ]);
-//   const data = [
-//     ...trendingNow.results,
-//     // ...Movies1.results,
-//     // ...MovieList2.results,
-//     // ...MovieList3.results,
-//     // ...popularMovies.results,
-//     // ...top_ratedMovies.results,
-//   ]
+  const [Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], trendingNow = [], popularMovies = []] =
+    await Promise.all([
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
+      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
+      tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
+      tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
+      tmdbMovieApiList.getPopularMovies({ page: 1 })
+    ]);
+  const data = [
+    ...trendingNow.results,
+    ...Movies1.results,
+    ...MovieList2.results,
+    ...MovieList3.results,
+    ...popularMovies.results,
+    ...top_ratedMovies.results,
+  ]
 
-//   let paths = [];
-//   data.forEach((item) => {
-//     const slugifyTitle = slugify(item?.title || (item?.original_title || item?.original_name));
-//     const movie_id = item.id.toString();
-//       paths = [...paths,
-//         { params: { movie_name: slugifyTitle,  movie_id }, }
-//       ]
-//     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
-//   });
-// console.log("paths", paths);
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: blocking } will server-render pages
-//   // on-demand if the path doesn't exist.
-//   return paths;
-//   // { paths, fallback: "blocking" };
-// }
+  let paths = [];
+  data.forEach((item) => {
+    const slugifyTitle = slugify(item?.title || (item?.original_title || item?.original_name));
+    const movie_id = item.id.toString();
+      paths = [...paths,
+        { params: { movie_name: slugifyTitle,  movie_id }, }
+      ]
+    // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
+  });
+console.log("paths", paths);
+  // We'll pre-render only these paths at build time.
+  // { fallback: blocking } will server-render pages
+  // on-demand if the path doesn't exist.
+  return paths;
+  // { paths, fallback: "blocking" };
+}
 
-// export async function getStaticPaths() {
-//   const posts = await getPosts(); // Fetch list of blog posts
-//   const paths = posts.map((post) => ({
-//     params: { slug: post.slug },
-//   }));
-
-//   return { paths, fallback: false }; // You can set fallback to true if you want to enable fallback rendering
-// }
 
 //getServerSideProps getStaticProps
 export async function getData(context) {
@@ -81,6 +73,29 @@ export async function getData(context) {
     },
     // revalidate: 10,
   };
+}
+
+export async function generateMetadata(context) {
+  // read route params
+  const id = context.params.movie_id;
+  const movieDetail = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
+  // fetch data
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = `https://image.tmdb.org/t/p/w780/${movieDetail.poster_path}` || []
+ 
+  return {
+    title: `${movieDetail.title || movieDetail.original_name} - day2movies`,
+    description: `${movieDetail.title || movieDetail.original_name}, ${movieDetail.overview}`,
+    openGraph: {
+      title: `${movieDetail.title || movieDetail.original_name} day2movies - watch movies & series online for free`,
+      description: `${movieDetail.title || movieDetail.original_name}, ${movieDetail.overview}`,
+      url: `https://day2movies.fun/${movieDetail.id}`,
+      siteName: 'day2movies',
+      images: previousImages,
+      locale: 'en_US',
+      type: 'website',
+    },
+  }
 }
 
 async function Movie(context) {
