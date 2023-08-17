@@ -1,14 +1,8 @@
 // import { getSession, useSession } from "next-auth/client";
 // import Image from "next/image";
-// import { useRouter } from "next/router";
-// import { useEffect, useState } from "react";
-// import { PlusIcon, XIcon } from "@heroicons/react/solid";
-// import ReactPlayer from "react-player/lazy";
 import MoviesCollection from "../../../../components/MoviesCollection";
 import MovieSummary from "../../../../components/MovieSummary";
-// import MovieList2 from "../../../../components/movieList";
 import ErrorPage from "../../../404";
-// import { getMovieById } from "../../../../api/movie";
 import * as tmdbMovieApiList from "../../../../api/movie";
 import MovieSeo from "../../../../../components/SEO/movie-seo";
 import tmdbPayload from "../../../../helper/tmdb-payload";
@@ -109,14 +103,6 @@ async function Movie(context) {
 
   let showPlayer= false, posterLink= `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
   `${BASE_URL}${result.poster_path}`;
-  // useEffect(() => {
-  //   setShowPlayer(false);
-  //   setposterLink(
-  //     `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
-  //       `${BASE_URL}${result.poster_path}`
-  //   );
-  // }, [result]);
-
   if (result.success === false) {
     return (<ErrorPage/>);
   }
@@ -125,11 +111,6 @@ async function Movie(context) {
     <>
       <MovieSeo movie={result} />
       <MovieSummary result={result} movieCast={movieCast?.cast} />
-      {/* <MovieList2
-        results={recommendedMovie.results}
-        result={recommendedMovie.results}
-        title="Recommended Movies"
-      /> */}
       {recommendedMovie.results && <MoviesCollection results={recommendedMovie.results} title="Recommended Movies" />}
     </>
   );

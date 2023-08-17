@@ -1,5 +1,5 @@
 import React from "react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Const from "../../helper/constant";
 import slugify from "../../../utils/slugify";
 
@@ -23,7 +23,7 @@ export default function CustomSlide(props) {
   return (
     <div {...otherprops}>
       <div className="mx-1 mx-lg-1 mx-xl-2 cursor-pointer carousel-container"
-        // onClick={() => router.push(getCurrentUrl)}
+        onClick={() => router.push(getCurrentUrl)}
       >
         <div className="carousel-description">
           <h2>{title}</h2>
@@ -34,9 +34,10 @@ export default function CustomSlide(props) {
         <div className="carousel-img">
           <img
             src={`https://image.tmdb.org/t/p/w1280${backdrop}`}
+            title={title||"day2movies"}
             alt={Const.ATTRIBUTES.IMG}
             className="d-inline"
-            // loading="lazy"
+            loading="lazy"
           />
         </div>
       </div>

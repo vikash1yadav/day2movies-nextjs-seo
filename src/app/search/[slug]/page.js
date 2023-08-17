@@ -1,22 +1,24 @@
+'use client'
 import React,{useEffect, useState} from 'react'
-import Router, { useRouter } from "next/router";
+import Router, { useRouter } from "next/navigation";
 import MoviesCollection from "../../../components/MoviesCollection";
 
 
 
-function index() {
-  const { query: { slug } } = useRouter();
+function index(context) {
+  console.log("context", context);
+  // const { query: { slug } } = useRouter();
   const [searchResult, setsearchResult] = useState([]);
   
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${slug}&api_key=10682f9f7e873f9fefa9c47949aca414`
+      `https://api.themoviedb.org/3/search/movie?query=${context?.params?.slug}&api_key=10682f9f7e873f9fefa9c47949aca414`
     ).then(async(res) => {
       const posts = await res.json();
       const { results } = posts;
       setsearchResult(results);
     })
-  }, [slug])
+  }, [context.params?.slug])
   
 
   return (
@@ -26,7 +28,7 @@ function index() {
         {/* <Brands /> */}
         <MoviesCollection
           results={searchResult}
-          title={`Search results for ${slug}`}
+          title={`Search results for ${context.params.slug}`}
         />
       </main>
     </div>

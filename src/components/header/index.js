@@ -18,7 +18,6 @@ const AppHeader = () => {
   const toggleMenu = () => setExpandMenu(!expandMenu);
 
   useEffect(() => setExpandMenu(false), [asPath]);
-
   return (
     <header
       className="sticky bg-[#040714] top-0 bg-bgFull z-[99]"
