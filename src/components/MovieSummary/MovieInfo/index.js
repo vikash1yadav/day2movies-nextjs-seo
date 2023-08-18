@@ -52,7 +52,7 @@ const MovieInfo = ({ movie, movieCast }) => {
         >
           {Math.floor(movie.runtime / 60)} hrs {movie.runtime % 60}m {" "}
         </BasicsSection>
-        <h4 className="text-sm m-2 md:text-lg max-w-4xl">{movie.overview}</h4>
+        <div className="text-sm m-2 md:text-lg max-w-4xl space-y-4">{movie.overview}</div>
         <h2>The Cast</h2>
         <div className="max-w-[50vw] overflow-x-scroll">
           <div className="flex overflow-x-auto overflow-y-auto space-x-2">

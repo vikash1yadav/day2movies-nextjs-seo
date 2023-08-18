@@ -8,7 +8,7 @@ import MovieSeo from "../../../../components/SEO/movie-seo";
 import tmdbPayload from "../../../../helper/tmdb-payload";
 import slugify from "../../../../../utils/slugify";
 import constant from "@/helper/constant";
-
+import MOVIE_CONTENT from "@/helper/movie-content";
 // generateStaticParams getStaticPaths
 export async function generateStaticParams() {
 
@@ -97,6 +97,9 @@ async function Movie(context) {
 
   const data = await getData(context);
   const { result, recommendedMovie, movieCast }= data.props;
+  if (MOVIE_CONTENT[result.id]) {
+    result.overview= MOVIE_CONTENT[result.id]?.overview;
+  }
   // const [session] = useSession();
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
   // const router = useRouter();
