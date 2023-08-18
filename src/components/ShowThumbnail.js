@@ -5,7 +5,7 @@ import slugify from "../../utils/slugify";
 // import Link from 'next/link';
 import constant from "../helper/constant";
 
-function ShowThumbnail({ result }) {
+function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
   const BASE_URL = "https://image.tmdb.org/t/p/w780";
   const router = useRouter();
 
@@ -17,11 +17,16 @@ function ShowThumbnail({ result }) {
     }
   };
 
-  const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(result?.name || (result?.original_title || result?.original_name))}/${result.id}`;
+  let slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.name)}/${slugify(series_name|| result?.name || (result?.original_title || result?.original_name))}/${series_id || result.id}`;
+ 
+  if (isSeriesSeason ==="Seasons") {
+    slugifyUrl = `${slugifyUrl}?season_number=${result?.season_number}`
+  }
+
   return (
     <>
     <div
-        className={`flex m-1 min-h-[260px] h-[330px] 
+        className={`flex m-1 min-h-[260px] h-[330px] w-[210px]
                rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px]
         border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl
          transform hover:scale-105 transition duration-300`}
@@ -34,7 +39,7 @@ function ShowThumbnail({ result }) {
         // height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
           title={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
-            objectFit="cover"
+            // objectFit="cover"
             layout="fill"
           // className="rounded-lg  aspect-[4/3]"
           className="my-auto w-full  min-h-[260px] rounded-[7px] hover:scale-105"

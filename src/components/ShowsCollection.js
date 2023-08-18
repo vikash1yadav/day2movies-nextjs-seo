@@ -1,6 +1,6 @@
 import ShowThumbnail from "./ShowThumbnail";
 
-function ShowsCollection({ results, title }) {
+function ShowsCollection({ results, title, series_id, series_name }) {
   return (
     <div className="max-w-[1400px] mx-auto "
     // max-w-[1400px] mx-auto 
@@ -12,7 +12,7 @@ function ShowsCollection({ results, title }) {
         // className="post"
       >
         {results.length>0 && results.map((result) => (
-          <ShowThumbnail key={result.id} result={result} />
+          <ShowThumbnail key={result.id} result={result} isSeriesSeason={title} series_id={series_id} series_name={series_name} />
         ))}
       </div>
     </div>

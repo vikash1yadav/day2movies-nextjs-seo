@@ -2,15 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-function ListItem({ result }) {
+function ListItem({ result, season_number, handleEpisodeChange }) {
     const BASE_URL = "https://image.tmdb.org/t/p/original/";
     const router = useRouter();
 
     return (
-        <Link href={`/movie/${result.id}`} legacyBehavior>
+        // <Link href={`/movie/${result.id}`} legacyBehavior>
             <div
                 className="flex min-w-[250px] min-h-[170px] md:min-w-[250px] md:min-h-[170px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300"
             // min-w-[250px] min-h-[170px] md:min-w-[330px] md:min-h-[210px]
+            onClick={() => handleEpisodeChange(result?.episode_number)}
             >
                 <Image src={`https://image.tmdb.org/t/p/w300${result.still_path}`}
                     // width={330}
@@ -25,12 +26,12 @@ function ListItem({ result }) {
                 >
                     <h2 className="font-semibold">
                         {/* md:inset-y-1 */}
-                        {`S${result.season_number}  E${result.episode_number} . ${result.air_date}`}
+                    {`S${season_number}  E${result.episode_number} . ${result.air_date}`}
                     </h2>
                     <p className="hidden">{result.overview}</p>
                 </div>
             </div>
-        </Link>
+        // </Link>
     );
 
 }

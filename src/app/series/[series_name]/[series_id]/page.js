@@ -26,10 +26,12 @@ export async function getData(context) {
 
   let request;
   let tvSeasonDetails;
+  // &append_to_response=external_ids
     await fetch(
-    `https://api.themoviedb.org/3/tv/${series_id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
+      `https://api.themoviedb.org/3/tv/${series_id}?api_key=${apiKey}&language=en-US&append_to_response=external_ids`
     ).then((response) => response.json()).then(async (responseTvDetails) => {
       request = responseTvDetails;
+      // request.videos.re
       return await getTvSeasonDetails(
         responseTvDetails.id,
         responseTvDetails.seasons
@@ -51,7 +53,8 @@ export async function getData(context) {
 }
 
 
-export default async function(context){
-  const data = await getData(context).then((res)=> res);
+export default async function (context) {
+  const data = await getData(context).then((res) => res);
+  data.props.season_number=context.searchParams?.season_number
   return <Show  {...data?.props}/>
 };

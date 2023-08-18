@@ -4,7 +4,7 @@ import MoviesCollection from "../../../../components/MoviesCollection";
 import MovieSummary from "../../../../components/MovieSummary";
 import ErrorPage from "../../../404";
 import * as tmdbMovieApiList from "../../../../api/movie";
-import MovieSeo from "../../../../components/SEO/movie-seo";
+// import MovieSeo from "../../../../components/SEO/movie-seo";
 import tmdbPayload from "../../../../helper/tmdb-payload";
 import slugify from "../../../../../utils/slugify";
 import constant from "@/helper/constant";
@@ -116,7 +116,7 @@ async function Movie(context) {
 
   return (
     <>
-      <MovieSeo movie={result} />
+      {/* <MovieSeo movie={result} /> */}
       <MovieSummary result={result} movieCast={movieCast?.cast} />
       {recommendedMovie.results && <MoviesCollection results={recommendedMovie.results} title="Recommended Movies" />}
     </>
