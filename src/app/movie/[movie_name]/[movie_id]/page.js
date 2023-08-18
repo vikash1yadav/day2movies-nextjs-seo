@@ -7,6 +7,7 @@ import * as tmdbMovieApiList from "../../../../api/movie";
 import MovieSeo from "../../../../components/SEO/movie-seo";
 import tmdbPayload from "../../../../helper/tmdb-payload";
 import slugify from "../../../../../utils/slugify";
+import constant from "@/helper/constant";
 
 // generateStaticParams getStaticPaths
 export async function generateStaticParams() {
@@ -31,11 +32,15 @@ export async function generateStaticParams() {
 
   let paths = [];
   data.forEach((item) => {
-    const slugifyTitle = slugify(item?.title || (item?.original_title || item?.original_name));
-    const movie_id = item.id.toString();
+    // `${(item?.title || item?.original_title)} constant.MOVIE_PAGE.SEO_TITLE`
+    const slugifyTitle = slugify(`${(item?.title || item?.original_title)}`);
+    if(slugifyTitle && slugifyTitle!==null && slugifyTitle!== undefined && slugifyTitle!==""){
+    const slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`);
+      const movie_id = item.id.toString();
       paths = [...paths,
-        { params: { movie_name: slugifyTitle,  movie_id }, }
+        { params: { movie_name: slugifyUrl,  movie_id }, }
       ]
+    }
     // params: { movie_name: "transformers:-rise-of-the-beasts", movie_id: { movie_id: "667538" } },
   });
  

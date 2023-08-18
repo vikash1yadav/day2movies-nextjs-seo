@@ -30,6 +30,10 @@ export default {
     },
     ATTRIBUTES: {
       IMG:"day2movies"  
+    },
+    MOVIE_PAGE:{
+        SEO_TITLE:"full movie download/watch online free",
+        SEO_MOVIE_URL: "full movie download watch online free"
     }
 
 }

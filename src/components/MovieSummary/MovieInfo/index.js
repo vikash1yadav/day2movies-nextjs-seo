@@ -26,7 +26,7 @@ const MovieInfo = ({ movie, movieCast }) => {
             root:"text-1xl sm:text-2xl md:text-3xl ",
             content:"text-1xl sm:text-1xl md:text-2xl font-semibold"
         }}
-        > Watch online {movie.title || movie.original_name} 
+        >{`${(movie.title || movie.original_name)} ${constant.MOVIE_PAGE.SEO_TITLE}`} 
         </BasicsSection>
         <BasicsSection movie={movie} heading="Genre"
           classNames={{
