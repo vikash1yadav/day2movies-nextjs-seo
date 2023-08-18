@@ -32,9 +32,9 @@ export async function generateStaticParams() {
 
   let paths = [];
   data.forEach((item) => {
-    // `${(item?.title || item?.original_title)} constant.MOVIE_PAGE.SEO_TITLE`
-    const slugifyTitle = slugify(`${(item?.title || item?.original_title)}`);
-    if(slugifyTitle && slugifyTitle!==null && slugifyTitle!== undefined && slugifyTitle!==""){
+    //&& slugifyTitle!==null && slugifyTitle!== undefined && slugifyTitle!==""
+    const slugifyTitle = slugify(item?.title || item?.original_title);
+    if(slugifyTitle){
     const slugifyUrl = slugify(`${(item?.title || item?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`);
       const movie_id = item.id.toString();
       paths = [...paths,
