@@ -1,5 +1,6 @@
 import slugify from "../../utils/slugify";
 import Link from 'next/link';
+import constant from "@/helper/constant";
 
 function MovieThumbnail({ result }) {
   const BASE_URL = "https://image.tmdb.org/t/p/original/";
@@ -11,7 +12,8 @@ function MovieThumbnail({ result }) {
       return "series";
     }
   };
-  const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(result?.title || (result?.original_title || result?.original_name))}/${result.id}`;
+  // `${(result?.title || result?.original_title)} constant.MOVIE_PAGE.SEO_TITLE`
+  const slugifyUrl = `/${checkTvOrMovieFromTitle(result.original_title, result.original_name)}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}/${result.id}`;
   return (
     <a
       as={slugifyUrl}
