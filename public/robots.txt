@@ -1,8 +1,4 @@
-# START YOAST BLOCK
-# ---------------------------
 User-agent: *
 Disallow:
 
-Sitemap: https://day2movies.fun/sitemap.xml
-# ---------------------------
-# END YOAST BLOCK
+Sitemap: https://day2movies.fun/sitemap_index.xml
