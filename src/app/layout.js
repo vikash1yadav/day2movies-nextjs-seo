@@ -41,7 +41,8 @@ export default function RootLayout({ children }) {
       >
       <AppHeader />
         {children}
-        <footer class="bg-gray-800 p-4">
+        <footer class=" p-4">
+          {/* bg-gray-800 */}
         <div class="container mx-auto text-center">
           <p>&copy; 2023 Day2Movies. All rights reserved.</p>
         </div>

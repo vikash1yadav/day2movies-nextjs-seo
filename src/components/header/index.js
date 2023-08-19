@@ -20,7 +20,8 @@ const AppHeader = () => {
   useEffect(() => setExpandMenu(false), [asPath]);
   return (
     <header
-      className="sticky bg-[#040714] top-0 bg-bgFull z-[99]"
+      className="day2-header  sticky top-0 bg-bgFull z-[99]"
+      // bg-[#040714]  bg-[#040714]
     >
       <div className="md:hidden w-full flex justify-between items-center relative">
         <AppHeading />
@@ -45,12 +46,13 @@ const AppHeader = () => {
           </svg>
         </button>
         {expandMenu ? (
-          <div className="absolute bg-[#040714] top-14 w-full bg-bgFull flex flex-col pt-2 pb-6">
+          <div className="day2-header absolute top-14 w-full bg-bgFull flex flex-col pt-2 pb-6">
             <NavItem name="Movies" link="movie" />
             <NavItem name="Bollywood" link="bollywood" />
             <NavItem name="Series" link="series" />
-            <div className="mb-2"></div>
-            <SearchBar setValue={setValue} value={value} />
+            <div className="px-2">
+              <SearchBar setValue={setValue} value={value} />
+            </div>
           </div>
         ) : null}
       </div>

@@ -26,6 +26,19 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.day2-header{
+  color: rgb(var(--foreground-rgb));
+    background: linear-gradient(to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  body {
+    @apply bg-[#040714] text-[#f9f9f9] font-body;
+  }
+}
+
 /* scroll bar */
 input:-webkit-autofill {
   /* to prevent adding yellow background to autofill input */

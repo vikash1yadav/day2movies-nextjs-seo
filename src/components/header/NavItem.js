@@ -8,7 +8,7 @@ import NextLink from 'next/link';
 const NavItem = ({ name, link }) => (
   (<NextLink
     href={`/${link}`}
-    className="text-xl sm:text-lg hover:text-textHighlight font-semibold tracking-wide ml-5 py-3 sm:py-5 sm:mr-5">
+    className="text-xl sm:text-lg hover:text-textHighlight font-semibold tracking-wide pl-5 py-3 sm:py-3 sm:mr-5">
 
     {name}
 

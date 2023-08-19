@@ -19,8 +19,8 @@ module.exports = {
       body: ["Montserrat", "sans-serif"],
     },
     screens: {
-      // mb:'300px',
-      sm: {max:'768px'},
+      smb:{max:'360px'},
+      sm: {max:'768px', min:"360px"},
       md: '768px',
       lg: '1024px',
       xl: '1280px',

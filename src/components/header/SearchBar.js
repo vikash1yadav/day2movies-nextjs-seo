@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 //   setValue: (val: string) => void;
 // }
 const iconButtonClass =
-  "ml-3 p-2 border border-inputPlaceholder hover:bg-bg2 rounded-md";
+  "ml-3 cursor-pointer p-2 border border-inputPlaceholder hover:bg-bg2 rounded-full";
 
 
 const SearchBar = ({ setValue, value }) => {
@@ -30,14 +30,14 @@ console.log("value", value);
           value={value}
           onChange={handleInput}
           aria-label="search"
-          className="text-[black] p-[5px] transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none"
+          className="text-[black] rounded-md p-[5px] transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none"
           // transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent bg-bgFull border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none
         />
       </form>
       <a
-        aria-label="View On GitHub"
-        title="View On GitHub"
-        href=""
+        aria-label="Search"
+        title="Search"
+        // href=""
         // target="_blank"
         rel="noopener noreferrer"
         className={iconButtonClass}
