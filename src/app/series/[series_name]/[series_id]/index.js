@@ -82,7 +82,6 @@ function Show({ result, recommendedShow, tvSeasonDetails, season_number }) {
                   objectFit="cover"
                 />
               </div>
-              <div className="bg-black ">
                 <div className={`bg-gradient-to-t from-black to-transparent  absolute 
                 bottom-0 pb-8 inset-x-0 p-4 space-y-6 z-50`}
                 // md:inset-y-auto md:bottom-0 md:inset-x-12
@@ -134,7 +133,6 @@ function Show({ result, recommendedShow, tvSeasonDetails, season_number }) {
                   </p>
                   <h4 className="text-sm md:text-lg max-w-4xl">{result.overview}</h4>
                 </div>
-              </div>
               {/* Bg Overlay */}
               {showPlayer && (
                 <div className="absolute inset-0 bg-black opacity-50 h-full w-full z-50"></div>
