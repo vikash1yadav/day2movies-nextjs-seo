@@ -1,5 +1,6 @@
 import Show from ".";
 import constant from "@/helper/constant";
+import * as tmdbSeriesApi from "@/api/tv-series";
 
 export async function getData(context) {
   const { series_id } = context.params;
@@ -50,6 +51,30 @@ export async function getData(context) {
       tvSeasonDetails
     },
   };
+}
+
+
+export async function generateMetadata(context) {
+  // read route params
+  const id = context.params.series_id;
+  const seriesDetails = await tmdbSeriesApi.getTvSeriesById({ series_id: id, append_to_response: "videos" })
+  // fetch data
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = `https://image.tmdb.org/t/p/w780${seriesDetails.poster_path}` || []
+
+  return {
+    title: `${seriesDetails.name || seriesDetails.original_name} - day2movies`,
+    description: `${seriesDetails.title || seriesDetails.original_name}, ${seriesDetails.overview}`,
+    openGraph: {
+      title: `${seriesDetails.name || seriesDetails.original_name} day2movies - watch movies & series online for free`,
+      description: `${seriesDetails.name || seriesDetails.original_name}, ${seriesDetails.overview}`,
+      url: `https://day2movies.fun/${seriesDetails.id}`,
+      siteName: 'day2movies',
+      images: previousImages,
+      locale: 'en_US',
+      type: 'website',
+    },
+  }
 }
 
 

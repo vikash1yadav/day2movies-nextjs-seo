@@ -17,3 +17,8 @@ export const getTopRatedShow = (data) => requestTmdbApi(`${Const.TMDB_CAT_BASED_
     method: "GET",
     params: data,
 });
+
+export const getTvSeriesById = ({ series_id, ...data }) => requestTmdbApi(`${Const.TMDB_CAT_BASED_URL.TV}/${series_id}`, {
+    method: "GET",
+    params: data,
+});
