@@ -1,5 +1,5 @@
 import slugify from "../../utils/slugify";
-import Link from 'next/link';
+import Link from 'next/navigation';
 import constant from "@/helper/constant";
 
 function MovieThumbnail({ result }) {
