@@ -2,11 +2,14 @@ import { getTrendingAllByWeek } from "@/api/movie";
 import Home from "..";
 import { getPopularShow } from "@/api/tv-series";
 import tmdbPayload from "@/helper/tmdb-payload";
-export async function getData() {
+export async function getData(context) {
     // const session = await getSession(context);
-
+    const page = context.searchParams?.page
     const payload = {
-        certification_country: tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country
+        certification_country: tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country,
+    }
+    if (page<500) {
+        payload.page = page;
     }
     const [
         trendingNow,
@@ -29,7 +32,7 @@ export async function getData() {
 }
 
 
-export default async function(){
-    const data= await getData();
+export default async function(context){
+    const data = await getData(context);
     return <Home {...data?.props}/>;
 };

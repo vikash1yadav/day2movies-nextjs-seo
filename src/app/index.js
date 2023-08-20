@@ -16,7 +16,6 @@ export default function Home({
   trendingNow,
   pageRoutes
 }) {
-  console.log("popularShows", popularShows);
 
   return (
     <div>
@@ -27,7 +26,7 @@ export default function Home({
             results={trendingNow}
             type={'trendingNow'}
           title="Trending Now"
-          // pagenate
+          pagenate
           />}
         {popularMovies && <MoviesCollection results={popularMovies} title="Popular Movies" pagenate />}
         {popularShows && <ShowsCollection showDataLists={popularShows} popularShows={popularShows} title="Popular Shows" pagenate />}

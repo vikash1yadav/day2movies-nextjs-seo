@@ -17,16 +17,21 @@ const payload = {
 }
 
 
-export async function getData() {
+export async function getData(context) {
   // const session = await getSession(context);
+  const page = context.searchParams?.page
+  if (page && page < 500) {
+    payload.page = page;
+  }
   const [popularMovies] =
     await Promise.all([
-      getDiscoverMovies({ ...payload, page: 1 }),
+      getDiscoverMovies({ ...payload, page}),
       // getDiscoverMovies({ ...payload, page: 2 }),
       // getDiscoverMovies({ ...payload, page: 3 }),
     ]);
   popularMovies.apiCallMethod = 'getPopularMovies';
   popularMovies.defaultApiPayload = { ...payload };
+  popularMovies.page_routes = 'bollywood'
   return {
     props: {
       popularMovies: popularMovies,
@@ -35,8 +40,8 @@ export async function getData() {
   };
 }
 
-export default async function(){
-  const data = await getData();
+export default async function (context){
+  const data = await getData(context);
   return <Home {...data?.props}/>;
 }
 

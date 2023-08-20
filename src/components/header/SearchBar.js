@@ -16,7 +16,6 @@ const SearchBar = ({ setValue, value }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-console.log("value", value);
     if (value) router.push(`/search/${value.toLowerCase()}`);
     setValue('');
   };

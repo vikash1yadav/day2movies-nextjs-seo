@@ -1,6 +1,7 @@
 import MovieThumbnail from "./movie-collection/MovieThumbnail";
+import Pagination from "./server-pagination";
 
-export default function SmoviesCollection({ results, title, }) {
+export default function SmoviesCollection({ results, title, pagenate }) {
     const movieList = results.results || [];
   return (
       <div className="max-w-[1400px] mx-auto ">
@@ -12,6 +13,10 @@ export default function SmoviesCollection({ results, title, }) {
                   <MovieThumbnail key={result.id} result={result} />
               ))}
           </div>
+          {
+              pagenate &&
+              <Pagination total_pages={results.total_pages} currentPage={results.page} page_routes={results.page_routes ||'movie'} />
+          }
       </div>
   )
 }

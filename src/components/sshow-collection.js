@@ -1,7 +1,8 @@
+import Pagination from './server-pagination';
 import ShowThumbnail from './show-collection/ShowThumbnail';
 
-export default function SshowCollection({ results, popularShows, title, series_id, series_name, }) {
-    const showlist = popularShows?.results|| results || [];
+export default function SshowCollection({ results, popularShows, title, series_id, series_name, pagenate }) {
+    const showlist = popularShows?.results || results || [];
   return (
       <div className="max-w-[1400px] mx-auto "
       >
@@ -12,8 +13,11 @@ export default function SshowCollection({ results, popularShows, title, series_i
               {showlist.length > 0 && showlist.map((result) => (
                   <ShowThumbnail key={result.id} result={result} isSeriesSeason={title} series_id={series_id} series_name={series_name} />
               ))}
-              
           </div>
+          {pagenate && 
+              <Pagination total_pages={popularShows.total_pages} currentPage={popularShows.page} page_routes={'series'} />
+          }
+          
       </div>
   )
 }
