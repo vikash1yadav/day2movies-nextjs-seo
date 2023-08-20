@@ -119,7 +119,7 @@ async function Movie(context) {
     <>
       {/* <MovieSeo movie={result} /> */}
       <MovieSummary result={result} movieCast={movieCast?.cast} />
-      {recommendedMovie.results && <MoviesCollection results={recommendedMovie.results} title="Recommended Movies" />}
+      {recommendedMovie.results && <MoviesCollection results={recommendedMovie} title="Recommended Movies" />}
     </>
   );
 }

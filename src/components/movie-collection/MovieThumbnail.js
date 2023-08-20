@@ -13,7 +13,8 @@ function MovieThumbnail({ result }) {
     }
   };
   // `${(result?.title || result?.original_title)} constant.MOVIE_PAGE.SEO_TITLE`
-  const slugifyUrl = `/${result?.media_type==="movie"? "movie":"series"}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}/${result.id}`;
+  const movieOrSeries = checkTvOrMovieFromTitle(result.original_title, result.name);
+  const slugifyUrl = `/${movieOrSeries}/${slugify(`${(result?.title || result?.original_title)} ${constant.MOVIE_PAGE.SEO_MOVIE_URL}`)}/${result.id}`;
   return (
     <a
       as={slugifyUrl}
