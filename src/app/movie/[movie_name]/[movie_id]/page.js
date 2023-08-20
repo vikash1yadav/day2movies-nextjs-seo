@@ -77,15 +77,15 @@ export async function generateMetadata(context) {
   const movieDetail = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
   // fetch data
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = `https://image.tmdb.org/t/p/w780/${movieDetail.poster_path}` || []
+  const previousImages = `https://image.tmdb.org/t/p/w780/${movieDetail?.poster_path}` || []
  
   return {
-    title: `${movieDetail.title || movieDetail.original_name} - day2movies`,
-    description: `${movieDetail.title || movieDetail.original_name}, ${movieDetail.overview}`,
+    title: `${movieDetail?.title || movieDetail?.original_name} - day2movies`,
+    description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
     openGraph: {
-      title: `${movieDetail.title || movieDetail.original_name} day2movies - watch movies & series online for free`,
-      description: `${movieDetail.title || movieDetail.original_name}, ${movieDetail.overview}`,
-      url: `https://day2movies.fun/${movieDetail.id}`,
+      title: `${movieDetail?.title || movieDetail?.original_name} day2movies - watch movies & series online for free`,
+      description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
+      url: `https://day2movies.fun/${movieDetail?.id}`,
       siteName: 'day2movies',
       images: previousImages,
       locale: 'en_US',
@@ -97,8 +97,14 @@ export async function generateMetadata(context) {
 async function Movie(context) {
 
   const data = await getData(context);
-  const { result, recommendedMovie, movieCast }= data.props;
-  if (MOVIE_CONTENT[result.id]) {
+  const { result, recommendedMovie, movieCast } = data.props;
+  
+  if (!result) {
+    return (<ErrorPage />);
+  }
+
+
+  if (MOVIE_CONTENT?.[result.id]) {
     result.overview= MOVIE_CONTENT[result.id]?.overview;
   }
   // const [session] = useSession();
@@ -110,11 +116,8 @@ async function Movie(context) {
   // );
 
   let showPlayer= false, posterLink= `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
-  `${BASE_URL}${result.poster_path}`;
-  if (result.success === false) {
-    return (<ErrorPage/>);
-  }
-
+    `${BASE_URL}${result.poster_path}`;
+  
   return (
     <>
       {/* <MovieSeo movie={result} /> */}
