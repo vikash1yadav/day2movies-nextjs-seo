@@ -3,8 +3,6 @@ import { useRouter } from "next/navigation";
 import Const from "../../helper/constant";
 import slugify from "../../../utils/slugify";
 
-// //import "./style.css";
-
 export default function CustomSlide(props) {
   const { backdrop, title, overview, genres, id, original_title, original_name, ...otherprops } = props; 
   const router = useRouter();
@@ -15,7 +13,6 @@ export default function CustomSlide(props) {
       return "series";
     }
   };
-
   const reformatTitle = (title) => {
     return slugify(title) ||title.replace(/ /g, "-").toLowerCase();
   };

@@ -7,16 +7,15 @@ export async function getData() {
 
     const [
         popularMovies,
-        top_ratedMovies,
     ] = await Promise.all([
         getPopularMovies(),
-        getTopRatedMovies(),
+        // getTopRatedMovies(),
     ]);
-
+    popularMovies.apiCallMethod = 'getPopularMovies';
+    popularMovies.defaultApiPayload = {};
     return {
         props: {
-            popularMovies: popularMovies.results,
-            top_ratedMovies: top_ratedMovies.results,
+            popularMovies: popularMovies,
         },
         revalidate: 100,
     };

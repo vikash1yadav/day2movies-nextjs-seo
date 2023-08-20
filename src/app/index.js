@@ -1,6 +1,6 @@
 // import { getSession, useSession } from "next-auth/client";
-import Head from "next/head";
-import MoviesCollection from "../components/MoviesCollection";
+// import Head from "next/head";
+import MoviesCollection from "../components/movie-collection";
 
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
@@ -16,59 +16,23 @@ export default function Home({
 }) {
   return (
     <div>
-      <Head>
-        {/* Primary Meta Tags */}
-        {/* google-site-verification=uO-3IvrE80JPUU2m1SNMVZR0e32ueVGO8eE43a5fPow */}
-        <title>Unlock a World of Entertainment with Day2Movies</title>
-        <meta name="description"
-          content="Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases."
-        />
-        <meta name="keywords" content="movies, web series, online streaming, Day2Movies, entertainment platform, streaming website, movie library, watch films online" />
-        {/* Bing HTML Meta Tag */}
-        <meta name="msvalidate.01" content="4329EF281E3B1FCF5290B8C366AC2E31" />
-        <meta http-equiv="content-language" content="en-in"></meta>
-        {/* Google meta tag */}
-        <meta name="google-site-verification" content="xaXydptdJWl4igFuD0gEiW_PmLa6FDorS0O2UoQzFBo" />
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://day2movies.com/" />
-        <meta
-          property="og:title"
-          content="day2movies - watch movies & series online for free"
-        />
-        <meta
-          property="og:description"
-          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
-        />
-        <meta property="og:image" content="https://day2movies.com/" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="628" />
-
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://day2movies.com/" />
-        <meta
-          property="twitter:title"
-          content="day2movies - watch movies & series online for free"
-        />
-        <meta
-          property="twitter:description"
-          content="Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!"
-        />
-        <meta property="twitter:image" content="https://day2movies.com/" />
-
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      {/* <Header /> */}
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
-        {(trendingNow || popularMovies) && <Slider results={trendingNow || popularMovies} />}
-        {(trendingNow && pageRoutes === "/")&& <MoviesCollection results={trendingNow} title="Trending Now" />}
-        {popularMovies &&<MoviesCollection results={popularMovies} title="Popular Movies" />}
-        {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" />}
+        {(trendingNow || popularMovies) && <Slider results={trendingNow?.results || popularMovies?.results} />}
+        {(trendingNow && pageRoutes === "/") &&
+          <MoviesCollection
+            results={trendingNow}
+            type={'trendingNow'}
+          title="Trending Now"
+          pagenate
+          />}
+        {popularMovies && <MoviesCollection results={popularMovies} title="Popular Movies" pagenate />}
+        {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" pagenate />}
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
         {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
       </main>
-      {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}      
+      <div id='footer-detail-section'>
+        {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}
+      </div>      
     </div>
   );
 }

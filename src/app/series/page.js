@@ -1,32 +1,27 @@
 import { getTrendingAllByWeek } from "@/api/movie";
 import Home from "..";
+import { getPopularShow } from "@/api/tv-series";
+import tmdbPayload from "@/helper/tmdb-payload";
 export async function getData() {
     // const session = await getSession(context);
 
+    const payload = {
+        certification_country: tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country
+    }
     const [
         trendingNow,
-        popularShowsRes,
-        top_ratedShowsRes,
+        popularShows,
     ] = await Promise.all([
         getTrendingAllByWeek(),
-        fetch(
-            `https://api.themoviedb.org/3/tv/popular?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
-        ),
-        fetch(
-            `https://api.themoviedb.org/3/tv/top_rated?api_key=10682f9f7e873f9fefa9c47949aca414&page=1`
-        ),
+        getPopularShow(payload),
     ]);
-    const [ popularShows, top_ratedShows] =
-        await Promise.all([
-            popularShowsRes.json(),
-            top_ratedShowsRes.json(),
-        ]);
-
+    popularShows.apiCallMethod = "getPopularShow";
+    popularShows.defaultApiPayload = payload;
+    
     return {
         props: {
-            trendingNow: trendingNow.results,
-            popularShows: popularShows.results,
-            top_ratedShows: top_ratedShows.results,
+            trendingNow: trendingNow,
+            popularShows
         },
         revalidate: 100,
     };

@@ -19,16 +19,17 @@ const payload = {
 
 export async function getData() {
   // const session = await getSession(context);
-  const [Movies1, MovieList2, MovieList3=[]] =
+  const [popularMovies] =
     await Promise.all([
       getDiscoverMovies({ ...payload, page: 1 }),
-      getDiscoverMovies({ ...payload, page: 2 }),
+      // getDiscoverMovies({ ...payload, page: 2 }),
       // getDiscoverMovies({ ...payload, page: 3 }),
     ]);
-// console.log("data", Movies1);
+  popularMovies.apiCallMethod = 'getPopularMovies';
+  popularMovies.defaultApiPayload = { ...payload };
   return {
     props: {
-      popularMovies: [...Movies1?.results, ...MovieList2?.results],
+      popularMovies: popularMovies,
     },
     revalidate: 100,
   };

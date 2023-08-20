@@ -1,6 +1,6 @@
 'use client'
 import React,{useEffect, useState} from 'react'
-import MoviesCollection from "../../../components/MoviesCollection";
+import MoviesCollection from "../../../components/movie-collection";
 import { getMovieSearchResult } from '@/api/movie';
 import { getTvSeriesSearchResult } from '@/api/tv-series';
 import ShowsCollection from '@/components/ShowsCollection';

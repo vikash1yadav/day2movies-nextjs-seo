@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export default {
+const tmdbPayload= {
      BOLLYWOOD_RECENT_YEAR_PAYLOAD :{
         certification_country: "IN",
         with_original_language: "hi",
@@ -8,3 +8,5 @@ export default {
         "release_date.lte": moment().add(1, 'week').format("YYYY-MM-DD") || "2023-08-16",
     }
 }
+
+export default tmdbPayload;

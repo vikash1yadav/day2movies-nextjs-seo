@@ -25,7 +25,8 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
 
   return (
     <>
-    <div
+      <div
+        id="movie-thumbnail"
         className={`flex m-1 min-h-[260px] h-[330px]  
                rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px]
         border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl

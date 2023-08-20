@@ -1,6 +1,6 @@
 // import { getSession, useSession } from "next-auth/client";
 // import Image from "next/image";
-import MoviesCollection from "../../../../components/MoviesCollection";
+import MoviesCollection from "../../../../components/movie-collection";
 import MovieSummary from "../../../../components/MovieSummary";
 import ErrorPage from "../../../404";
 import * as tmdbMovieApiList from "../../../../api/movie";
