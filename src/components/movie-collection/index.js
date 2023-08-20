@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import MovieThumbnail from "./MovieThumbnail";
 import PaginatedContent from "../scroll-to-bottom";
 import ThumbnailSelecton from "./thumbnail-selecton";
@@ -29,11 +30,10 @@ function MoviesCollection({ results, title, pagenate, ...restProps }) {
   if (!pagenate) {
     return <Collection movieList={results.results} loading={false} title={title} />
   }
-  'use client'
-  const [movieList, setMovieList] = React.useState(results.results || []);
-  const [currentPage, setPage] = React.useState(1);
-  const [totalPgae, setTotalPage] = React.useState(results?.total_pages);
-  let [loading, setLoading] = React.useState(false);
+  const [movieList, setMovieList] = useState(results.results || []);
+  const [currentPage, setPage] = useState(1);
+  const [totalPgae, setTotalPage] = useState(results?.total_pages);
+  let [loading, setLoading] = useState(false);
 
   const fetchData = async ({page}) => {
     setLoading(true);
@@ -51,7 +51,7 @@ function MoviesCollection({ results, title, pagenate, ...restProps }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (currentPage && currentPage != 1 && currentPage <= totalPgae && currentPage < 500) {
       fetchData({ page: currentPage }); 
     }
