@@ -1,21 +1,21 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import ShowThumbnail from "./ShowThumbnail";
-import PaginatedContent from "./scroll-to-bottom";
+import PaginatedContent from "../scroll-to-bottom";
 import * as showApi from "@/api/tv-series";
-import ThumbnailSelecton from "./movie-collection/thumbnail-selecton";
+import ThumbnailSelecton from "../movie-collection/thumbnail-selecton";
 
-function ShowsCollection({ results, title, series_id, series_name, pagenate, ...restProps }) {
-  const [showlist, setshowlist] = useState(results.results || []);
+function ShowsCollection({ showDataLists, title, series_id, series_name, pagenate, ...restProps }) {
+  const [showlist, setshowlist] = useState(showDataLists.results || []);
   const [currentPage, setPage] = useState(1);
   let [loading, setLoading] = useState(false);
-  const [totalPgae, setTotalPage] = useState(results?.total_pages);
+  const [totalPgae, setTotalPage] = useState(showDataLists?.total_pages);
 
   const fetchData = async ({ page }) => {
     setLoading(true);
     try {
-      const payload = { page, ...results?.defaultApiPayload };
-      let apiCall = showApi?.[results?.apiCallMethod] || showApi.getPopularShow;
+      const payload = { page, ...showDataLists?.defaultApiPayload };
+      let apiCall = showApi?.[showDataLists?.apiCallMethod] || showApi.getPopularShow;
       const newData = await apiCall(payload);
       setshowlist((prevData) => [...prevData, ...newData?.results]);
       setPage(newData.page);

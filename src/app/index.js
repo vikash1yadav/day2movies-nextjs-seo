@@ -1,11 +1,13 @@
 // import { getSession, useSession } from "next-auth/client";
 // import Head from "next/head";
 import Slider from "../components/Slider";
-import ShowsCollection from "../components/ShowsCollection";
 import SeoContentForHome from "../components/seo-content";
 import MoviePageSeoContent from "../components/movie-seo-content";
-import MoviesCollection from "@/components/smovies-collection";
-// import MoviesCollection from "../components/movie-collection";
+// import MoviesCollection from "../components/movie-collection"; //remove it for infinte pagination
+// import ShowsCollection from "../components/show-collection"; //remove it for infinte pagination
+import MoviesCollection from "@/components/smovies-collection"; 
+import ShowsCollection from "@/components/sshow-collection";
+
 export default function Home({
   popularMovies,
   popularShows,
@@ -14,6 +16,8 @@ export default function Home({
   trendingNow,
   pageRoutes
 }) {
+  console.log("popularShows", popularShows);
+
   return (
     <div>
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
@@ -26,9 +30,9 @@ export default function Home({
           // pagenate
           />}
         {popularMovies && <MoviesCollection results={popularMovies} title="Popular Movies" pagenate />}
-        {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" pagenate />}
+        {popularShows && <ShowsCollection showDataLists={popularShows} popularShows={popularShows} title="Popular Shows" pagenate />}
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
-        {top_ratedShows &&<ShowsCollection results={top_ratedShows} title="Top Rated Shows" />}
+        {top_ratedShows && <ShowsCollection showDataLists={top_ratedShows} title="Top Rated Shows" />}
       </main>
       <div id='footer-detail-section'>
         {pageRoutes === "/" ? <SeoContentForHome /> : <MoviePageSeoContent />}

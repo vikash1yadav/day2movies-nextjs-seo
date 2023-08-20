@@ -3,7 +3,7 @@ import React,{useEffect, useState} from 'react'
 import MoviesCollection from "../../../components/movie-collection";
 import { getMovieSearchResult } from '@/api/movie';
 import { getTvSeriesSearchResult } from '@/api/tv-series';
-import ShowsCollection from '@/components/ShowsCollection';
+import ShowsCollection from '@/components/show-collection';
 import tmdbPayload from '@/helper/tmdb-payload';
 
 function index(context) {

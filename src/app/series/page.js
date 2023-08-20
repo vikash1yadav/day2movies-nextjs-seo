@@ -17,7 +17,8 @@ export async function getData() {
     ]);
     popularShows.apiCallMethod = "getPopularShow";
     popularShows.defaultApiPayload = payload;
-    
+
+
     return {
         props: {
             trendingNow: trendingNow,

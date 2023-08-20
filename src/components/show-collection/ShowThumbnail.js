@@ -1,9 +1,9 @@
 'use client'
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import slugify from "../../utils/slugify";
+import slugify from "../../../utils/slugify";
 // import Link from 'next/link';
-import constant from "../helper/constant";
+import constant from "../../helper/constant";
 
 function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
   const BASE_URL = "https://image.tmdb.org/t/p/w780";
