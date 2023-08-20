@@ -23,7 +23,7 @@ export async function getData() {
     await Promise.all([
       getDiscoverMovies({ ...payload, page: 1 }),
       getDiscoverMovies({ ...payload, page: 2 }),
-      getDiscoverMovies({ ...payload, page: 3 }),
+      // getDiscoverMovies({ ...payload, page: 3 }),
     ]);
 // console.log("data", Movies1);
   return {

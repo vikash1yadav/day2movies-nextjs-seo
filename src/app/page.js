@@ -15,18 +15,17 @@ export async function getData(context) {
   ] = await Promise.all([
     getTrendingAllByWeek({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD.certification_country}),
     getPopularMovies(),
-    getPopularShow({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD}),
-    
-    getTopRatedMovies(),
-    getTopRatedShow(),
+    // getPopularShow({...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD}),
+    // getTopRatedMovies(),
+    // getTopRatedShow(),
   ]);
   return {
     props: {
       trendingNow: trendingNow.results,
       popularMovies: popularMovies.results,
-      popularShows: popularShows.results,
-      top_ratedMovies: top_ratedMovies.results,
-      top_ratedShows: top_ratedShows.results,
+      // popularShows: popularShows?.results,
+      // top_ratedMovies: top_ratedMovies?.results,
+      // top_ratedShows: top_ratedShows?.results,
       pageRoutes: "/",
     },
     revalidate: 100,

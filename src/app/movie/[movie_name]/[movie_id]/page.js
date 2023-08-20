@@ -15,19 +15,19 @@ export async function generateStaticParams() {
   const [Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], trendingNow = [], popularMovies = []] =
     await Promise.all([
       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
-      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
-      tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
-      tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
+      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
+      // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 3 }),
+      // tmdbMovieApiList.getTopRatedMovies({ page: 1 }),
       tmdbMovieApiList.getTrendingAllByWeek({ page: 1 }),
-      tmdbMovieApiList.getPopularMovies({ page: 1 })
+      // tmdbMovieApiList.getPopularMovies({ page: 1 })
     ]);
   const data = [
-    ...trendingNow.results,
-    ...Movies1.results,
-    ...MovieList2.results,
-    ...MovieList3.results,
-    ...popularMovies.results,
-    ...top_ratedMovies.results,
+    ...trendingNow?.results,
+    ...Movies1?.results,
+    // ...MovieList2?.results,
+    // ...MovieList3?.results,
+    // ...popularMovies?.results,
+    // ...top_ratedMovies?.results,
   ]
 
   let paths = [];
