@@ -1,11 +1,11 @@
 // import { getSession, useSession } from "next-auth/client";
 // import Head from "next/head";
-import MoviesCollection from "../components/movie-collection";
-
 import Slider from "../components/Slider";
 import ShowsCollection from "../components/ShowsCollection";
 import SeoContentForHome from "../components/seo-content";
 import MoviePageSeoContent from "../components/movie-seo-content";
+import MoviesCollection from "@/components/smovies-collection";
+// import MoviesCollection from "../components/movie-collection";
 export default function Home({
   popularMovies,
   popularShows,
