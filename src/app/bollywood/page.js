@@ -28,7 +28,7 @@ export async function getData() {
 // console.log("data", Movies1);
   return {
     props: {
-      popularMovies: [...Movies1?.results, ...MovieList2?.results, ...MovieList3?.results],
+      popularMovies: [...Movies1?.results, ...MovieList2?.results],
     },
     revalidate: 100,
   };

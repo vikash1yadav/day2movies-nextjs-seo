@@ -12,7 +12,7 @@ import MOVIE_CONTENT from "@/helper/movie-content";
 // generateStaticParams getStaticPaths
 export async function generateStaticParams() {
 
-  const [Movies1 = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], trendingNow = [], popularMovies = []] =
+  const [Movies1 = [], trendingNow = [], MovieList2 = [], MovieList3 = [], top_ratedMovies = [], popularMovies = []] =
     await Promise.all([
       tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 1 }),
       // tmdbMovieApiList.getDiscoverMovies({ ...tmdbPayload.BOLLYWOOD_RECENT_YEAR_PAYLOAD, page: 2 }),
@@ -25,10 +25,11 @@ export async function generateStaticParams() {
     ...trendingNow?.results,
     ...Movies1?.results,
     // ...MovieList2?.results,
-    // ...MovieList3?.results,
+  ]
+
+    //   ...MovieList3?.results,
     // ...popularMovies?.results,
     // ...top_ratedMovies?.results,
-  ]
 
   let paths = [];
   data.forEach((item) => {

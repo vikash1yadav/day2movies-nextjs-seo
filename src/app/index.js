@@ -61,7 +61,8 @@ export default function Home({
       </Head>
       {/* <Header /> */}
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
-        <Slider results={trendingNow || popularMovies} />
+        {(trendingNow || popularMovies) && <Slider results={trendingNow || popularMovies} />}
+        {(trendingNow && pageRoutes === "/")&& <MoviesCollection results={trendingNow} title="Trending Now" />}
         {popularMovies &&<MoviesCollection results={popularMovies} title="Popular Movies" />}
         {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" />}
         {top_ratedMovies && <MoviesCollection results={top_ratedMovies} title="Top Rated Movies" />}
