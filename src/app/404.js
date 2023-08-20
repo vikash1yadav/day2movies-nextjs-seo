@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ErrorPage() {
   return (
-    <div className=" flex items-center flex-col">
+    <div className="w-full h-full flex items-center flex-col">
       <h1 className="text-[64]">404</h1>
         <h2>The content you are looking for is not available at the moment</h2>
         <Link href="/" legacyBehavior>

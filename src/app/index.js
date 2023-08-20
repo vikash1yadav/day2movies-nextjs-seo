@@ -23,7 +23,7 @@ export default function Home({
             results={trendingNow}
             type={'trendingNow'}
           title="Trending Now"
-          pagenate
+          // pagenate
           />}
         {popularMovies && <MoviesCollection results={popularMovies} title="Popular Movies" pagenate />}
         {popularShows && <ShowsCollection results={popularShows} title="Popular Shows" pagenate />}

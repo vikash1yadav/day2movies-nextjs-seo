@@ -1,11 +1,35 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import MovieThumbnail from "./MovieThumbnail";
 import PaginatedContent from "../scroll-to-bottom";
 import ThumbnailSelecton from "./thumbnail-selecton";
 import * as moveApi from "@/api/movie";
 
+const Collection = ({ movieList, loading, title }) =>
+  <div className="max-w-[1400px] mx-auto ">
+    <h2 className="font-semibold m-5">{title}</h2>
+    <div
+      className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] smb:grid-cols-[repeat(auto-fit,minmax(155px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))]"
+    >
+      {movieList.length > 0 && movieList.map((result) => (
+        <MovieThumbnail key={result.id} result={result} />
+      ))}
+      {
+        loading &&
+        <>
+          <ThumbnailSelecton />
+          <ThumbnailSelecton />
+          <ThumbnailSelecton />
+          <ThumbnailSelecton />
+        </>
+      }
+    </div>
+  </div>;
+
 function MoviesCollection({ results, title, pagenate, ...restProps }) {
+  if (!pagenate) {
+    return <Collection movieList={results.results} loading={false} title={title} />
+  }
   const [movieList, setMovieList] = useState(results.results || []);
   const [currentPage, setPage] = useState(1);
   const [totalPgae, setTotalPage] = useState(results?.total_pages);
@@ -42,32 +66,11 @@ function MoviesCollection({ results, title, pagenate, ...restProps }) {
   //   }
   // }, [currentPage])
 
-  const Collection = () =>
-    <div className="max-w-[1400px] mx-auto ">
-      <h2 className="font-semibold m-5">{title}</h2>
-      <div
-        className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] smb:grid-cols-[repeat(auto-fit,minmax(155px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(180px,1fr))]"
-      >
-        {movieList.length > 0 && movieList.map((result) => (
-          <MovieThumbnail key={result.id} result={result} />
-        ))}
-        {
-          loading &&
-          <>
-            <ThumbnailSelecton />
-            <ThumbnailSelecton />
-            <ThumbnailSelecton />
-            <ThumbnailSelecton />
-          </>
-        }
-      </div>
-    </div>;
-
   return (
     <>
       {pagenate ?
         <PaginatedContent loading={loading} setPage={setPage} >
-          <Collection />
+          <Collection movieList={movieList} loading={loading} title={title} />
         </PaginatedContent> :
         <Collection />}
     </>
