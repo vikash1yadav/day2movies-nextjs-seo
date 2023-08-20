@@ -1,5 +1,3 @@
-import React from 'react'
-
 function SeoContentForHome() {
     return (
         <div className=' text-gray-800 font-sans m-4 p-8'>

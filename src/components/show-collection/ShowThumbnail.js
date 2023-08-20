@@ -1,13 +1,11 @@
-'use client'
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import slugify from "../../../utils/slugify";
-// import Link from 'next/link';
+import Link from 'next/link';
 import constant from "../../helper/constant";
 
 function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
   const BASE_URL = "https://image.tmdb.org/t/p/w780";
-  const router = useRouter();
+  // const router = useRouter();
 
   const checkTvOrMovieFromTitle = (original_title, original_name) => {
     if (original_title) {
@@ -24,15 +22,15 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
   }
 
   return (
-    <>
+    <Link href={slugifyUrl}>
       <div
         id="movie-thumbnail"
-        className={`flex m-1 min-h-[260px] h-[330px]  
+        className={`flex m-1 max-w-[220px] min-h-[260px] h-[330px]  
                rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px]
         border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl
          transform hover:scale-105 transition duration-300`}
         // w-[210px] smb:w-[150px] smb:h-[250px] sm:w-[190px] sm:h-[300px]
-        onClick={() => router.push(slugifyUrl)}
+        // onClick={() => router.push(slugifyUrl)}
         >
       <Image
         src={
@@ -55,7 +53,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
               </h2>
           </div>
         </div>
-    </>
+    </Link>
   );
 }
 
