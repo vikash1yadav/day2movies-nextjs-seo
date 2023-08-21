@@ -36,7 +36,7 @@ export default {
         API_DATE:"YYYY-MM-DD"
     },
     ATTRIBUTES: {
-      IMG:"day2movies"  
+        IMG:"The Bharat News"  
     },
     MOVIE_PAGE:{
         SEO_TITLE:"full movie download/watch online free",

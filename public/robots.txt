@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://day2movies.fun/sitemap_index.xml
+Sitemap: https://streamtonight.online/sitemap_index.xml

@@ -80,13 +80,13 @@ export async function generateMetadata(context) {
   const previousImages = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${movieDetail.poster_path}`|| []
  
   return {
-    title: `${movieDetail?.title || movieDetail?.original_name} - day2movies`,
+    title: `${movieDetail?.title || movieDetail?.original_name} - streamtonight`,
     description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
     openGraph: {
-      title: `${movieDetail?.title || movieDetail?.original_name} day2movies - watch movies & series online for free`,
+      title: `${movieDetail?.title || movieDetail?.original_name} streamtonight - watch movies & series online for free`,
       description: `${movieDetail?.title || movieDetail?.original_name}, ${movieDetail?.overview}`,
-      url: `https://day2movies.fun/${movieDetail?.id}`,
-      siteName: 'day2movies',
+      url: `https://streamtonight.online/${movieDetail?.id}`,
+      siteName: 'streamtonight',
       images: previousImages,
       locale: 'en_US',
       type: 'website',

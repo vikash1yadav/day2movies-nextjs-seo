@@ -63,13 +63,13 @@ export async function generateMetadata(context) {
   const previousImages = `https://image.tmdb.org/t/p/w780${seriesDetails.poster_path}` || []
 
   return {
-    title: `${seriesDetails.name || seriesDetails.original_name} - day2movies`,
+    title: `${seriesDetails.name || seriesDetails.original_name} - streamtonight`,
     description: `${seriesDetails.title || seriesDetails.original_name}, ${seriesDetails.overview}`,
     openGraph: {
-      title: `${seriesDetails.name || seriesDetails.original_name} day2movies - watch movies & series online for free`,
+      title: `${seriesDetails.name || seriesDetails.original_name} streamtonight - watch movies & series online for free`,
       description: `${seriesDetails.name || seriesDetails.original_name}, ${seriesDetails.overview}`,
-      url: `https://day2movies.fun/${seriesDetails.id}`,
-      siteName: 'day2movies',
+      url: `https://streamtonight.online/${seriesDetails.id}`,
+      siteName: 'streamtonight',
       images: previousImages,
       locale: 'en_US',
       type: 'website',

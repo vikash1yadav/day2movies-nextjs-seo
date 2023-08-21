@@ -4,16 +4,16 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Unlock a World of Entertainment with Day2Movies',
-  description: 'Day2Movies: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
+  title: 'Unlock a World of Entertainment with streamtonight',
+  description: 'streamtonight: Your ultimate destination for movies and series. Experience seamless streaming, explore a diverse catalog, and keep pace with the latest releases.',
   openGraph: {
-    title: 'day2movies - watch movies & series online for free',
-    description: 'Discover the ultimate online destination for movies and web series at Day2Movies. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
-    url: 'https://day2movies.fun',
-    siteName: 'day2movies',
+    title: 'streamtonight - watch movies & series online for free',
+    description: 'Discover the ultimate online destination for movies and web series at streamtonight. Explore a vast library of content, enjoy seamless streaming, and stay updated with the latest releases. Join us for an unparalleled entertainment experience!',
+    url: 'https://streamtonight.online',
+    siteName: 'streamtonight',
     images: [
       {
-        url: 'https://day2movies.fun/',
+        url: 'https://streamtonight.online/',
         width: 800,
         height: 600,
       },
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <footer id='footer' class=" p-4">
           {/* bg-gray-800 */}
         <div class="container mx-auto text-center">
-          <p>&copy; 2023 Day2Movies. All rights reserved.</p>
+          <p>&copy; 2023 streamtonight. All rights reserved.</p>
         </div>
       </footer>
       </body>
