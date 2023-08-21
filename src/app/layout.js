@@ -23,8 +23,6 @@ export const metadata = {
   },
   verification: {
     google: 'xaXydptdJWl4igFuD0gEiW_PmLa6FDorS0O2UoQzFBo',
-    // yandex: 'yandex',
-    // yahoo: 'yahoo',
     other: {
       'msvalidate.01': '4329EF281E3B1FCF5290B8C366AC2E31',
     },
