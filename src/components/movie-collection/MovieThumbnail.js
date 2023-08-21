@@ -3,8 +3,8 @@ import Link from 'next/navigation';
 import constant from "@/helper/constant";
 
 function MovieThumbnail({ result }) {
-  const BASE_URL = "https://image.tmdb.org/t/p/original/";
-  // const router = useRouter();
+  const THUMBNAIL_URL = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${result.poster_path}`;
+  // const router = useRouter(); // TMDB_IMAGE_SIZE[300]
   const checkTvOrMovieFromTitle = (original_title, original_name) => {
     if (original_title) {
       return "movie";
@@ -30,11 +30,7 @@ function MovieThumbnail({ result }) {
     >
       <div
         id="movie-thumbnail"
-        // className="postItem"
-        // tailwind w-[190px] h-[330px]
-        className="flex flex-col bg-[#282c34] text-[white] cursor-pointer m-[5px] p-[5px] rounded-[10px] hover:bg-[white] hover:text-[black]"
-      // onClick={() => router.push(`/movie/${result.id}`)}
-      // onClick={() => router.push()}
+        className="flex flex-col max-w-[220px] bg-[#282c34] text-[white] cursor-pointer m-[5px] p-[5px] rounded-[10px] hover:bg-[white] hover:text-[black]"
       >
         <div
           className="link no-underline text-inherit"
@@ -44,7 +40,7 @@ function MovieThumbnail({ result }) {
             // postImg
             // tailwind:w-[180px] min-h-[260px]
             className="w-full h-full my-auto min-h-[260px]  object-cover rounded-[7px] hover:scale-105"
-            src={`https://image.tmdb.org/t/p/w780/${result.poster_path}`}
+            src={THUMBNAIL_URL}
             alt={result.title + ", day2movies"}
             title={result.title || result.original_name + " day2movies"}
             loading="lazy"

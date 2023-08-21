@@ -77,7 +77,7 @@ export async function generateMetadata(context) {
   const movieDetail = await tmdbMovieApiList.getMovieById({ movie_id: id, append_to_response:"videos" })
   // fetch data
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = `https://image.tmdb.org/t/p/w780/${movieDetail?.poster_path}` || []
+  const previousImages = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${movieDetail.poster_path}`|| []
  
   return {
     title: `${movieDetail?.title || movieDetail?.original_name} - day2movies`,
@@ -107,17 +107,6 @@ async function Movie(context) {
   if (MOVIE_CONTENT?.[result.id]) {
     result.overview= MOVIE_CONTENT[result.id]?.overview;
   }
-  // const [session] = useSession();
-  const BASE_URL = "https://image.tmdb.org/t/p/original/";
-  // const router = useRouter();
-  // const [showPlayer, setShowPlayer] = useState(false);
-  // const [posterLink, setposterLink] = useState(
-    // `${BASE_URL}${result.poster_path}`
-  // );
-
-  let showPlayer= false, posterLink= `${BASE_URL}${result.backdrop_path || result.poster_path}` ||
-    `${BASE_URL}${result.poster_path}`;
-  
   return (
     <>
       {/* <MovieSeo movie={result} /> */}

@@ -4,6 +4,7 @@ import constant from "../../../helper/constant";
 // import Image from "next/dist/client/image";
 
 const MovieInfo = ({ movie, movieCast }) => {
+  const THUMBNAIL_URL = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${movie?.poster_path}`;
   const [innerWidth, setinnerWidth] = React.useState();
   const [cast, setcast] = React.useState([]);
   React.useEffect(() => {
@@ -16,7 +17,7 @@ const MovieInfo = ({ movie, movieCast }) => {
       {/* flex-1 overflow-hidden */}
       <div className="h-[200px] w-[350px] lg:h-[400px]">
         <img className="rounded-lg h-full"
-          src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+          src={THUMBNAIL_URL}
           alt={movie.title + ", day2movies , watch latest movie online for free on day2movies"}
           title={movie.title || movie.original_name + " day2movies"} />
       </div>

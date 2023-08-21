@@ -10,6 +10,12 @@ export default {
         IMAGE_BASE_URL: 'https://image.tmdb.org/t/p',
         PAGE_LIMIT : 20,
     },
+    TMDB_IMAGE_SIZE: {
+        780: 'w780',
+        300: 'w300',
+        200 : 'w200'
+    },
+    THUMBNAIL_SIZE: 'w200',
     STREAM_SERVER: {
         GD_STREAM_BASE_URL: "https://databasegdriveplayer.xyz/player.php",
         YOUTUBE_BASE_URL:"https://www.youtube.com/watch",

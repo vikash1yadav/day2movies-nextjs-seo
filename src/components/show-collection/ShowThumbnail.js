@@ -4,7 +4,8 @@ import Link from 'next/link';
 import constant from "../../helper/constant";
 
 function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
-  const BASE_URL = "https://image.tmdb.org/t/p/w780";
+  const THUMBNAIL_URL = `${constant.TMDB.IMAGE_BASE_URL}/${constant.THUMBNAIL_SIZE}${result.poster_path}`;
+
   // const router = useRouter();
 
   const checkTvOrMovieFromTitle = (original_title, original_name) => {
@@ -33,8 +34,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
         // onClick={() => router.push(slugifyUrl)}
         >
       <Image
-        src={
-          `${BASE_URL}${ result.poster_path}`}
+          src={THUMBNAIL_URL}
         // width={190}
         // height={330}
           alt={`${result.name}, ${constant.ATTRIBUTES.IMG}`}
