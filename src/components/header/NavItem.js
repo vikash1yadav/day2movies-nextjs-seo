@@ -5,11 +5,11 @@ import NextLink from 'next/link';
 //   name: 'TV' | 'Movies';
 // }
 
-const NavItem = ({ name, link }) => (
+const NavItem = ({ name, icon_url, link }) => (
   (<NextLink
     href={`/${link}`}
-    className="text-xl sm:text-lg hover:text-textHighlight font-semibold tracking-wide pl-5 py-3 sm:py-3 sm:mr-5">
-
+    className="flex items-center text-xl sm:text-lg hover:text-textHighlight font-semibold tracking-wide pl-5 py-3 sm:py-3 sm:mr-5">
+    {icon_url && <img src={icon_url} alt="" className="h-5 px-1" />}
     {name}
 
   </NextLink>)

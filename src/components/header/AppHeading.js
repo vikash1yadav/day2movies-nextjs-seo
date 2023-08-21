@@ -2,9 +2,10 @@
 import NextLink from 'next/link';
 
 const AppHeading = () => (
-  <NextLink href="/" className="text-2xl font-bold ml-5 mr-8 py-5 flex text-textHighlight">
-    {/* <img src='/images/day2movies-icon.png' className='w-[90px]' /> */}
-    Day2Movies
+  <NextLink href="/" className="flex flex-col text-2xl font-bold ml-5 mr-8 py-3 text-textHighlight">
+    <img src='/images/day2movies-icon.png' className='h-12 w-28' />
+    {/* Day2Movies
+    <span className='text-[10px] text-center pt-0'>stream day2night</span> */}
   </NextLink>
 );
 

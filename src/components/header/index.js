@@ -59,10 +59,10 @@ const AppHeader = () => {
       <div className="hidden md:flex w-full justify-between items-center">
         <div className="flex items-center">
           <AppHeading />
-          <nav>
-            <NavItem name="Movies" link="movie" />
-            <NavItem name="Bollywood" link="bollywood" />
-            <NavItem name="Series" link="series"/>
+          <nav className='flex'>
+            <NavItem icon_url={"/images/movie-icon.svg"} name="Movies" link="movie" />
+            <NavItem icon_url={"/images/movie-icon.svg"} name="Bollywood" link="bollywood" />
+            <NavItem icon_url={"/images/series-icon.svg"} name="Series" link="series"/>
           </nav>
         </div>
         <SearchBar setValue={setValue} value={value} />
