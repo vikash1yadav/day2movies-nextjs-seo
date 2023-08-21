@@ -5,6 +5,7 @@ import slugify from "../../../utils/slugify";
 
 export default function CustomSlide(props) {
   const { backdrop, title, overview, genres, id, original_title, original_name, ...otherprops } = props; 
+  const IMG_URL = `${Const.TMDB.IMAGE_BASE_URL}/${Const.SLIDER_IMG_SIZE}${backdrop}`
   const router = useRouter();
   const checkTvOrMovieFromTitle = (original_title, original_name) => {
     if (original_title) {
@@ -30,7 +31,7 @@ export default function CustomSlide(props) {
         <div className="carousel-overlay"></div>
         <div className="carousel-img">
           <img
-            src={`https://image.tmdb.org/t/p/w1280${backdrop}`}
+            src={IMG_URL}
             title={title||"day2movies"}
             alt={Const.ATTRIBUTES.IMG}
             className="d-inline"

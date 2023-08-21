@@ -16,6 +16,7 @@ export default {
         200 : 'w200'
     },
     THUMBNAIL_SIZE: 'w200',
+    SLIDER_IMG_SIZE: 'w780',
     STREAM_SERVER: {
         GD_STREAM_BASE_URL: "https://databasegdriveplayer.xyz/player.php",
         YOUTUBE_BASE_URL:"https://www.youtube.com/watch",
