@@ -3,9 +3,9 @@
 import Slider from "../components/Slider";
 import SeoContentForHome from "../components/seo-content";
 import MoviePageSeoContent from "../components/movie-seo-content";
-// import MoviesCollection from "../components/movie-collection"; //remove it for infinte pagination
+import MoviesCollection from "../components/movie-collection"; //remove it for infinte pagination
 // import ShowsCollection from "../components/show-collection"; //remove it for infinte pagination
-import MoviesCollection from "@/components/smovies-collection"; 
+// import MoviesCollection from "@/components/smovies-collection"; 
 import ShowsCollection from "@/components/sshow-collection";
 
 export default function Home({
