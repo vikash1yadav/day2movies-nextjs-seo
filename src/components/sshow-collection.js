@@ -1,8 +1,8 @@
 import Pagination from './server-pagination';
 import ShowThumbnail from './show-collection/ShowThumbnail';
 
-export default function SshowCollection({ results, popularShows, title, series_id, series_name, pagenate }) {
-    const showlist = popularShows?.results || results || [];
+export default function SshowCollection({ results, popularShows, searchShowResult, title, series_id, series_name, pagenate }) {
+    const showlist = popularShows?.results || results || searchShowResult?.results || [];
   return (
       <div className="max-w-[1400px] mx-auto "
       >

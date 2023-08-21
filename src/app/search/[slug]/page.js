@@ -1,14 +1,14 @@
 'use client'
 import React,{useEffect, useState} from 'react'
-import MoviesCollection from "../../../components/movie-collection";
+import MoviesCollection from "../../../components/smovies-collection";
 import { getMovieSearchResult } from '@/api/movie';
 import { getTvSeriesSearchResult } from '@/api/tv-series';
-import ShowsCollection from '@/components/show-collection';
+import ShowsCollection from '@/components/sshow-collection';
 import tmdbPayload from '@/helper/tmdb-payload';
 
 function index(context) {
-  const [searchResult, setsearchResult] = useState([]);
-  const [searchShowResult, setSearchShowResult] = useState([]);
+  const [searchResult, setsearchResult] = useState({});
+  const [searchShowResult, setSearchShowResult] = useState({});
   
   useEffect(() => {
     getMovieSearchResult({
@@ -17,7 +17,7 @@ function index(context) {
     })
     .then(async(res) => {
       const { results } = res;
-      setsearchResult(results);
+      setsearchResult(res);
     })
 
     getTvSeriesSearchResult({
@@ -27,7 +27,7 @@ function index(context) {
     })
     .then(async(res) => {
       const { results } = res;
-      setSearchShowResult(results);
+      setSearchShowResult(res);
     })
   }, [context.params?.slug])
   
@@ -43,7 +43,7 @@ function index(context) {
         />
 
         <ShowsCollection
-          results={searchShowResult}
+          searchShowResult={searchShowResult}
           title={`Tv-show/Series Search results for ${context.params.slug}`}
         />
       </main>

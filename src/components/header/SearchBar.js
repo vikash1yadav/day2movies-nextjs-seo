@@ -33,12 +33,12 @@ const SearchBar = ({ setValue, value }) => {
           // transition-width w-full md:w-60 md:focus:w-80 lg:focus:w-96 py-1.5 focus:border-accent bg-bgFull border-b-2 border-inputBorder placeholder-inputPlaceholder focus:outline-none
         />
       </form>
-      <a
+      <button
         aria-label="Search"
         title="Search"
-        // href=""
+        // href={`search/${value}`}
         // target="_blank"
-        rel="noopener noreferrer"
+        // rel="noopener noreferrer"
         className={iconButtonClass}
         onClick={handleSubmit}
       >
@@ -56,7 +56,7 @@ const SearchBar = ({ setValue, value }) => {
             d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
           />
         </svg>
-      </a>
+      </button>
     </div>
   );
 };
