@@ -41,6 +41,11 @@ export default {
     MOVIE_PAGE:{
         SEO_TITLE:"full movie download/watch online free",
         SEO_MOVIE_URL: "full movie download watch online free"
-    }
+    },
+    HOME_META_IMG: ['https://image.tmdb.org/t/p/w780/H6j5smdpRqP9a8UnhWp6zfl0SC.jpg',
+        'https://image.tmdb.org/t/p/w780/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg',
+        'https://image.tmdb.org/t/p/w780/m1k24MwmoqAdKMPJDaBLwdB5Tps.jpg',
+        'https://image.tmdb.org/t/p/w780/ipoUI3FzVTczg2r8mYxNlE5SsMh.jpg',
+    ],
 
 }

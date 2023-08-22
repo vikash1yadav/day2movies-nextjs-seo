@@ -1,6 +1,7 @@
 import AppHeader from '@/components/header'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import constant from '@/helper/constant'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -12,6 +13,7 @@ export const metadata = {
     url: 'https://streamtonight.online',
     siteName: 'streamtonight',
     images: [
+      ...constant.HOME_META_IMG,
       {
         url: 'https://streamtonight.online/',
         width: 800,
