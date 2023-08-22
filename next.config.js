@@ -1,9 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        domains: ["rb.gy", "image.tmdb.org"],
-  },
-  distDir: 'build',
+module.exports = {
+  reactStrictMode: true,
+  distDir: 'dist',
+  compress: false,
 }
-
-module.exports = nextConfig
