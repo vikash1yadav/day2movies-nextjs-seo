@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import slugify from "../../../utils/slugify";
 import Link from 'next/link';
 import constant from "../../helper/constant";
@@ -33,7 +33,7 @@ function ShowThumbnail({ result, isSeriesSeason, series_id, series_name }) {
         // w-[210px] smb:w-[150px] smb:h-[250px] sm:w-[190px] sm:h-[300px]
         // onClick={() => router.push(slugifyUrl)}
         >
-      <Image
+      <img
           src={THUMBNAIL_URL}
         // width={190}
         // height={330}
